@@ -4,9 +4,9 @@ import os
 class LLM:
     def __init__(self, model):
         if model == "deepseek-chat":
-            model = "deepseek-v3"
+            model = "deepseek-v3.2"
             self.api_key = ""
-            self.base_url = f""
+            self.base_url = f"https://api.deepseek.com"
         
         elif model == "gpt-3.5-turbo-0125": 
             self.api_key = ""

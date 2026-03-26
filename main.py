@@ -200,7 +200,7 @@ class SZZRunner:
         output = self._load_existing_output(output_file)
         completed_commits = self._load_completed_commits(progress_file)
         
-        use_temp_dir_llm = "/data1/temp/"
+        use_temp_dir_llm = r'E:\github\LLM_SZZ\temp'
         llm_szz = LLMSZZ(
             repo_full_name=project, 
             repo_url=repo_url, 

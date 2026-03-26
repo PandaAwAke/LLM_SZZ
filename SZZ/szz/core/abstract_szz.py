@@ -60,7 +60,7 @@ class AbstractSZZ(ABC):
 
         if not use_temp_dir:
             # TODO: update the temp directory
-            self.__temp_dir = "/data1/temp"
+            self.__temp_dir = r'E:\github\LLM_SZZ\temp'
 
             repo_dir = os.path.join(repos_dir, repo_full_name)
             self._repository_path = repo_dir
