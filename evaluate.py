@@ -1,8 +1,10 @@
-import os  
+import logging
+import os
 import sys  
 import json  
 import statistics  
 import sys
+from time import perf_counter
 
 from setting import *
 from data_loader import REPOS_DIR 
@@ -29,6 +31,15 @@ class DualOutput:
         self.file.flush()
 
 
+logger = logging.getLogger('llm-szz')
+logger.setLevel(logging.INFO)  # 设置日志级别
+logger.propagate = False  # 关键：阻止日志向上传播到全局logger
+file_handler = logging.FileHandler('llm-szz.log', encoding='utf-8')
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
+
+
 def eval_vulnerable_version(lang=None, szz_method=None, model = None,time = None):
     with open(os.path.join(DATA_FOLDER, f'verified_cve_with_versions_{lang}.json')) as fin:
         labeled_items = json.load(fin)
@@ -43,18 +54,33 @@ def eval_vulnerable_version(lang=None, szz_method=None, model = None,time = None
 
 
     n_correct_commit = 0 
-    n_szz_fail = 0 
+    n_szz_fail = 0
+
+
+    def get_real_project(project: str) -> str:
+        with open('repo_mapping.json', 'r', encoding='utf-8') as f:
+            repo_mapping = json.load(f)
+        if project in repo_mapping:
+            repo_url = repo_mapping[project]
+            real_project = repo_url.rstrip('/').split('/')[-1]
+            return real_project
+        return project
     
     
 
-    for item in labeled_items: 
+    for item in labeled_items:
+        stat_time_start = perf_counter()
+
+
         print("*******************")
         project = item['project'] 
         print("project:",project)
 
 
 
-        pro_name = convert_project_name(project)
+        # pro_name = convert_project_name(project)
+        pro_name = get_real_project(project)
+
         try:
             
             if szz_method =="llm":
@@ -111,6 +137,9 @@ def eval_vulnerable_version(lang=None, szz_method=None, model = None,time = None
             for ic in fd['inducing_commits']:
                 if ic['is_true_inducing'] == 'True': 
                     inducing_commits.add(ic['commit_id'])
+
+        stat_time_end = perf_counter()
+        logger.info(f"[Time] CVE {item["cve_id"]} time: {stat_time_end - stat_time_start}")
 
          
 

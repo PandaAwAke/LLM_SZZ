@@ -200,7 +200,7 @@ class SZZRunner:
         output = self._load_existing_output(output_file)
         completed_commits = self._load_completed_commits(progress_file)
         
-        use_temp_dir_llm = r'E:\github\LLM_SZZ\temp'
+        use_temp_dir_llm = False
         llm_szz = LLMSZZ(
             repo_full_name=project, 
             repo_url=repo_url, 
@@ -319,19 +319,30 @@ def main() -> None:
     # Load projects and commits
     projects = load_project(config.language)
     project_commits = load_annotated_commits()
+
+
+    def get_real_project(project: str) -> str:
+        with open('repo_mapping.json', 'r', encoding='utf-8') as f:
+            repo_mapping = json.load(f)
+        if project in repo_mapping:
+            repo_url = repo_mapping[project]
+            real_project = repo_url.rstrip('/').split('/')[-1]
+            return real_project
+        return project
+
     
     # Process each project
     for project in project_commits:
-        repo_folder = os.path.join(REPOS_DIR, project)
-        
-        if not os.path.exists(repo_folder):
-            print(f"Skipping {project} as the repository folder does not exist.")
-            continue
-        
         if project in projects:
             print("Project:", project)
             print("project_commits[project]", project_commits[project])
-            
+
+            project = get_real_project(project)
+            repo_folder = os.path.join(REPOS_DIR, project)
+
+            if not os.path.exists(repo_folder):
+                print(f"Skipping {project} as the repository folder does not exist.")
+                continue
             runner.run_szz(project, project_commits[project])
 
 
