@@ -3,6 +3,7 @@ import sys
 import json
 import logging
 import argparse
+from time import perf_counter
 from typing import List, Dict, Optional, Any
 from dataclasses import dataclass
 
@@ -51,6 +52,15 @@ class DualOutput:
         if hasattr(self.terminal_stderr, 'flush'):
             self.terminal_stderr.flush()
         self.file.flush()
+
+
+logger = logging.getLogger('llm-szz')
+logger.setLevel(logging.INFO)  # 设置日志级别
+logger.propagate = False  # 关键：阻止日志向上传播到全局logger
+file_handler = logging.FileHandler('llm-szz.log', encoding='utf-8')
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 
 class SZZRunner:
@@ -333,7 +343,10 @@ def main() -> None:
     
     # Process each project
     for project in project_commits:
+
         if project in projects:
+            stat_time_start = perf_counter()
+
             print("Project:", project)
             print("project_commits[project]", project_commits[project])
 
@@ -344,6 +357,9 @@ def main() -> None:
                 print(f"Skipping {project} as the repository folder does not exist.")
                 continue
             runner.run_szz(project, project_commits[project])
+
+            stat_time_end = perf_counter()
+            logger.info(f"[Time] Project {project} time: {stat_time_end - stat_time_start}")
 
 
 if __name__ == "__main__":

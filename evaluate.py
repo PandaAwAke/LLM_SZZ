@@ -31,15 +31,6 @@ class DualOutput:
         self.file.flush()
 
 
-logger = logging.getLogger('llm-szz')
-logger.setLevel(logging.INFO)  # 设置日志级别
-logger.propagate = False  # 关键：阻止日志向上传播到全局logger
-file_handler = logging.FileHandler('llm-szz.log', encoding='utf-8')
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
-
-
 def eval_vulnerable_version(lang=None, szz_method=None, model = None,time = None):
     with open(os.path.join(DATA_FOLDER, f'verified_cve_with_versions_{lang}.json')) as fin:
         labeled_items = json.load(fin)
@@ -69,9 +60,6 @@ def eval_vulnerable_version(lang=None, szz_method=None, model = None,time = None
     
 
     for item in labeled_items:
-        stat_time_start = perf_counter()
-
-
         print("*******************")
         project = item['project'] 
         print("project:",project)
@@ -137,10 +125,6 @@ def eval_vulnerable_version(lang=None, szz_method=None, model = None,time = None
             for ic in fd['inducing_commits']:
                 if ic['is_true_inducing'] == 'True': 
                     inducing_commits.add(ic['commit_id'])
-
-        stat_time_end = perf_counter()
-        logger.info(f"[Time] CVE {item["cve_id"]} time: {stat_time_end - stat_time_start}")
-
          
 
         
