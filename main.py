@@ -420,18 +420,10 @@ def main() -> None:
     project_commits = extract_vfc_by_project(DATASET)
     VFC_to_CVE_mapping = extract_mapping_VFC_to_CVE(DATASET)
 
-    start = False
-
     # Process each project
     for project in project_commits:
         # if project in projects:
         stat_time_start = perf_counter()
-
-        if project == 'cayenne':
-            start = True
-
-        if not start:
-            continue
 
         print("Project:", project)
         print("project_commits[project]", project_commits[project])
