@@ -1,0 +1,18 @@
+{
+    "59c69ed40d3755ef59f80872e0ea711adbb13620": [
+        {
+            "line_num": 63,
+            "line_str": "private static DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();",
+            "file_path": "spring-integration-xml/src/main/java/org/springframework/integration/xml/xpath/XPathUtils.java",
+            "content_around": "\tprivate static List<String> RESULT_TYPES = Arrays.asList(STRING, BOOLEAN, NUMBER, NODE, NODE_LIST, DOCUMENT_LIST);\n\n\tprivate static XmlPayloadConverter converter = new DefaultXmlPayloadConverter();\n\n\tprivate static DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();\n\n\t/**\n\t * Utility method to evaluate an xpath on the provided object.\n\t * Delegates evaluation to an {@link XPathExpression}.\n\t * Note this method provides the {@code #xpath()} SpEL function.\n\t *\n",
+            "previous_commits": [
+                {
+                    "commit": "88de8117aa23f204fb20ce6528a5166a47f035ed",
+                    "line number": 63,
+                    "line content": "private static DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

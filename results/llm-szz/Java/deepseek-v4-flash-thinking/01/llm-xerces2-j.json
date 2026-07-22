@@ -1,0 +1,18 @@
+{
+    "266e837852e0f0e3c8c1ad572b6fc4dbb4ded17b": [
+        {
+            "line_num": 476,
+            "line_str": "String name = fEntityScanner.scanName();",
+            "file_path": "src/org/apache/xerces/impl/XMLScanner.java",
+            "content_around": "    public String scanPseudoAttribute(boolean scanningTextDecl, \n                                      XMLString value) \n        throws IOException, XNIException {\n\n        String name = fEntityScanner.scanName();\n        if (name == null) {\n            reportFatalError(\"PseudoAttrNameExpected\", null);\n        }\n        fEntityScanner.skipSpaces();\n        if (!fEntityScanner.skipChar('=')) {\n            reportFatalError(scanningTextDecl ? \"EqRequiredInTextDecl\"\n",
+            "previous_commits": [
+                {
+                    "commit": "6fec9ee0c874aba003c6652a39c4de16036f6e4f",
+                    "line number": 476,
+                    "line content": "String name = fEntityScanner.scanName();",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

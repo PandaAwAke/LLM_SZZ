@@ -1,0 +1,46 @@
+{
+    "7f22aa0090296eb00280f878e3731bb71d40f9eb": [
+        {
+            "line_num": 91,
+            "line_str": "lastModified =  new Date(connection.getLastModified());",
+            "file_path": "core/src/main/java/io/undertow/server/handlers/resource/URLResource.java",
+            "content_around": "                    lastModified = null;\n                    contentLength = null;\n                    return;\n                }\n                lastModified =  new Date(connection.getLastModified());\n                contentLength = connection.getContentLengthLong();\n            } finally {\n                if (connection != null) {\n                    try {\n                        IoUtils.safeClose(connection.getInputStream());\n                    } catch (IOException e) {\n",
+            "previous_commits": [
+                {
+                    "commit": "87f4fb41fcd85d9c517a6df1d17d35ffc78aa37d",
+                    "line number": 91,
+                    "line content": "lastModified =  new Date(connection.getLastModified());",
+                    "hunk(diff message)": "@@ -65,7 +72,34 @@ public class URLResource implements Resource, RangeAwareResource {\n \n     @Override\n     public Date getLastModified() {\n-        return new Date(connection.getLastModified());\n+        openConnection();\n+        return lastModified;\n+    }\n+\n+    private void openConnection() {\n+        if (!connectionOpened) {\n+            connectionOpened = true;\n+            URLConnection connection = null;\n+            try {\n+                try {\n+                    connection = url.openConnection();\n+                } catch (IOException e) {\n+                    lastModified = null;\n+                    contentLength = null;\n+                    return;\n+                }\n+                lastModified =  new Date(connection.getLastModified());\n+                contentLength = connection.getContentLengthLong();\n+            } finally {\n+                if (connection != null) {\n+                    try {\n+                        IoUtils.safeClose(connection.getInputStream());\n+                    } catch (IOException e) {\n+                        //ignore\n+                    }\n+                }\n+            }\n+        }\n     }\n \n     @Override"
+                },
+                {
+                    "commit": "ca37f8df602a5d65d476a69fbc8ab3177565d538",
+                    "line number": 33,
+                    "line content": "return new Date(connection.getLastModified());",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ],
+    "882d5884f2614944a0c2ae69bafd9d13bfc5b64a": [
+        {
+            "line_num": 91,
+            "line_str": "lastModified =  new Date(connection.getLastModified());",
+            "file_path": "core/src/main/java/io/undertow/server/handlers/resource/URLResource.java",
+            "content_around": "                    lastModified = null;\n                    contentLength = null;\n                    return;\n                }\n                lastModified =  new Date(connection.getLastModified());\n                contentLength = connection.getContentLengthLong();\n            } finally {\n                if (connection != null) {\n                    try {\n                        IoUtils.safeClose(connection.getInputStream());\n                    } catch (IOException e) {\n",
+            "previous_commits": [
+                {
+                    "commit": "177efba2518e46e6d3ebbffdac25889708991b94",
+                    "line number": 91,
+                    "line content": "lastModified =  new Date(connection.getLastModified());",
+                    "hunk(diff message)": "@@ -65,7 +72,34 @@ public class URLResource implements Resource, RangeAwareResource {\n \n     @Override\n     public Date getLastModified() {\n-        return new Date(connection.getLastModified());\n+        openConnection();\n+        return lastModified;\n+    }\n+\n+    private void openConnection() {\n+        if (!connectionOpened) {\n+            connectionOpened = true;\n+            URLConnection connection = null;\n+            try {\n+                try {\n+                    connection = url.openConnection();\n+                } catch (IOException e) {\n+                    lastModified = null;\n+                    contentLength = null;\n+                    return;\n+                }\n+                lastModified =  new Date(connection.getLastModified());\n+                contentLength = connection.getContentLengthLong();\n+            } finally {\n+                if (connection != null) {\n+                    try {\n+                        IoUtils.safeClose(connection.getInputStream());\n+                    } catch (IOException e) {\n+                        //ignore\n+                    }\n+                }\n+            }\n+        }\n     }\n \n     @Override"
+                },
+                {
+                    "commit": "ca37f8df602a5d65d476a69fbc8ab3177565d538",
+                    "line number": 33,
+                    "line content": "return new Date(connection.getLastModified());",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

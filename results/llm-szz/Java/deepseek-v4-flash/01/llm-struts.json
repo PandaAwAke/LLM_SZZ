@@ -1,0 +1,114 @@
+{
+    "1f301038a751bf16e525607c3db513db835b2999": [
+        {
+            "line_num": 46,
+            "line_str": "private static final Random RANDOM = new Random();",
+            "file_path": "core/src/main/java/org/apache/struts2/util/TokenHelper.java",
+            "content_around": "     * The name of the field which will hold the token name\n     */\n    public static final String TOKEN_NAME_FIELD = \"struts.token.name\";\n    private static final Log LOG = LogFactory.getLog(TokenHelper.class);\n    private static final Random RANDOM = new Random();\n\n\n    /**\n     * Sets a transaction token into the session using the default token name.\n     *\n     * @return the token string\n",
+            "previous_commits": [
+                {
+                    "commit": "7a0a6d58016b244e9521442f1e9666521f5c61b9",
+                    "line number": 46,
+                    "line content": "private static final Random RANDOM = new Random();",
+                    "hunk(diff message)": "@@ -36,12 +37,13 @@ public class TokenHelper {\n      * The default name to map the token value\n      */\n     public static final String DEFAULT_TOKEN_NAME = \"struts.token\";\n-\n+    \n     /**\n      * The name of the field which will hold the token name\n      */\n     public static final String TOKEN_NAME_FIELD = \"struts.token.name\";\n     private static final Log LOG = LogFactory.getLog(TokenHelper.class);\n+    private static final Random RANDOM = new Random();\n \n \n     /**"
+                }
+            ]
+        }
+    ],
+    "19494718865f2fb7da5ea363de3822f87fbda264": [
+        {
+            "line_num": 36,
+            "line_str": "XStream xstream = createXStream();",
+            "file_path": "plugins/struts2-rest-plugin/src/main/java/org/apache/struts2/rest/handler/XStreamHandler.java",
+            "content_around": "public class XStreamHandler implements ContentTypeHandler {\n\n    public String fromObject(Object obj, String resultCode, Writer out) throws IOException {\n        if (obj != null) {\n            XStream xstream = createXStream();\n            xstream.toXML(obj, out);\n        }\n        return null;\n    }\n\n    public void toObject(Reader in, Object target) {\n",
+            "previous_commits": [
+                {
+                    "commit": "6229ad7a4726717bf594e9b4e4afa90e1e028829",
+                    "line number": 36,
+                    "line content": "XStream xstream = createXStream();",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ],
+    "6dd6e5cfb7b5e020abffe7e8091bd63fe97c10af": [
+        {
+            "line_num": 36,
+            "line_str": "XStream xstream = createXStream();",
+            "file_path": "plugins/struts2-rest-plugin/src/main/java/org/apache/struts2/rest/handler/XStreamHandler.java",
+            "content_around": "public class XStreamHandler implements ContentTypeHandler {\n\n    public String fromObject(Object obj, String resultCode, Writer out) throws IOException {\n        if (obj != null) {\n            XStream xstream = createXStream();\n            xstream.toXML(obj, out);\n        }\n        return null;\n    }\n\n    public void toObject(Reader in, Object target) {\n",
+            "previous_commits": [
+                {
+                    "commit": "6229ad7a4726717bf594e9b4e4afa90e1e028829",
+                    "line number": 36,
+                    "line content": "XStream xstream = createXStream();",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ],
+    "15857a69e7baf3675804495a5954cd0756ac8364": [
+        {
+            "line_num": 286,
+            "line_str": "return TextParseUtil.translateVariables('%', expr, stack);",
+            "file_path": "src/java/com/opensymphony/webwork/components/Component.java",
+            "content_around": "     * @return  the Object found, or <tt>null</tt> if not found.\n     */\n    protected Object findValue(String expr, Class toType) {\n        if (altSyntax() && toType == String.class) {\n            return TextParseUtil.translateVariables('%', expr, stack);\n        } else {\n            if (altSyntax()) {\n                // does the expression start with %{ and end with }? if so, just cut it off!\n                if (expr.startsWith(\"%{\") && expr.endsWith(\"}\")) {\n                    expr = expr.substring(2, expr.length() - 1);\n                }\n",
+            "previous_commits": [
+                {
+                    "commit": "c01d3a92db7f71f751a0522912d24bcf4a94a1b0",
+                    "line number": 286,
+                    "line content": "return TextParseUtil.translateVariables('%', expr, stack);",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ],
+    "87935af56a27235e9399308ee1fcfb74f8edcefa": [
+        {
+            "line_num": 353,
+            "line_str": "return isAccepted(name) && !isExcluded(name);",
+            "file_path": "xwork-core/src/main/java/com/opensymphony/xwork2/interceptor/ParametersInterceptor.java",
+            "content_around": "        return logEntry.toString();\n    }\n\n    protected boolean acceptableName(String name) {\n        return isAccepted(name) && !isExcluded(name);\n    }\n\n    protected boolean isAccepted(String paramName) {\n        if (!this.acceptParams.isEmpty()) {\n            for (Pattern pattern : acceptParams) {\n                Matcher matcher = pattern.matcher(paramName);\n",
+            "previous_commits": [
+                {
+                    "commit": "6137ac2293a2649400c22c4d81d9a2018e80bbf3",
+                    "line number": 353,
+                    "line content": "return isAccepted(name) && !isExcluded(name);",
+                    "hunk(diff message)": "@@ -350,10 +350,7 @@ public class ParametersInterceptor extends MethodFilterInterceptor {\n     }\n \n     protected boolean acceptableName(String name) {\n-        if (isAccepted(name) && !isExcluded(name)) {\n-            return true;\n-        }\n-        return false;\n+        return isAccepted(name) && !isExcluded(name);\n     }\n \n     protected boolean isAccepted(String paramName) {\n"
+                }
+            ]
+        }
+    ],
+    "98d2692e434fe7f4d445ade24fe2c9860de1c13f": [
+        {
+            "line_num": 270,
+            "line_str": "path = pathFromRequest;",
+            "file_path": "src/java/com/opensymphony/webwork/views/xslt/XSLTResult.java",
+            "content_around": "    private Templates getTemplates(String path) throws TransformerException, IOException {\n        String pathFromRequest = ServletActionContext.getRequest().getParameter(\"xslt.location\");\n\n        if (pathFromRequest != null) {\n            path = pathFromRequest;\n        }\n\n        if (path == null) {\n            throw new TransformerException(\"Stylesheet path is null\");\n        }\n\n",
+            "previous_commits": [
+                {
+                    "commit": "c01d3a92db7f71f751a0522912d24bcf4a94a1b0",
+                    "line number": 270,
+                    "line content": "path = pathFromRequest;",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ],
+    "6bd694b7980494c12d49ca1bf39f12aec3e03e2f": [
+        {
+            "line_num": 270,
+            "line_str": "path = pathFromRequest;",
+            "file_path": "src/java/com/opensymphony/webwork/views/xslt/XSLTResult.java",
+            "content_around": "    private Templates getTemplates(String path) throws TransformerException, IOException {\n        String pathFromRequest = ServletActionContext.getRequest().getParameter(\"xslt.location\");\n\n        if (pathFromRequest != null) {\n            path = pathFromRequest;\n        }\n\n        if (path == null) {\n            throw new TransformerException(\"Stylesheet path is null\");\n        }\n\n",
+            "previous_commits": [
+                {
+                    "commit": "c01d3a92db7f71f751a0522912d24bcf4a94a1b0",
+                    "line number": 270,
+                    "line content": "path = pathFromRequest;",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ]
+}

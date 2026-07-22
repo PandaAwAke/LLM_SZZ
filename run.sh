@@ -3,8 +3,8 @@
 # Model list
 models=(
     # "gpt-4o-mini-2024-07-18"
-    # "deepseek-chat"
-    "gpt-3.5-turbo-0125"
+     "deepseek-chat"
+#    "gpt-3.5-turbo-0125"
     # "Mixtral-8x7B-Instruct-v0.1"
     # "gpt-4o-2024-08-06"
     # "o1-mini-2024-09-12"

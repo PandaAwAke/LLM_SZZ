@@ -1,0 +1,84 @@
+{
+    "296d481f980fcbecbee01244e3644e254470a86e": [
+        {
+            "line_num": 80,
+            "line_str": "return SerializationUtils.deserialize(this.body).toString();",
+            "file_path": "spring-amqp/src/main/java/org/springframework/amqp/core/Message.java",
+            "content_around": "\t\t}\n\t\ttry {\n\t\t\tString contentType = (this.messageProperties != null) ? this.messageProperties.getContentType() : null;\n\t\t\tif (MessageProperties.CONTENT_TYPE_SERIALIZED_OBJECT.equals(contentType)) {\n\t\t\t\treturn SerializationUtils.deserialize(this.body).toString();\n\t\t\t}\n\t\t\tif (MessageProperties.CONTENT_TYPE_TEXT_PLAIN.equals(contentType)\n\t\t\t\t\t|| MessageProperties.CONTENT_TYPE_JSON.equals(contentType)\n\t\t\t\t\t|| MessageProperties.CONTENT_TYPE_JSON_ALT.equals(contentType)\n\t\t\t\t\t|| MessageProperties.CONTENT_TYPE_XML.equals(contentType)) {\n\t\t\t\treturn new String(this.body, ENCODING);\n",
+            "previous_commits": [
+                {
+                    "commit": "6d9afdfa0b15ca3ed68c26476143030be0123d25",
+                    "line number": 80,
+                    "line content": "return SerializationUtils.deserialize(this.body).toString();",
+                    "hunk(diff message)": "@@ -63,42 +63,42 @@ public class Message implements Serializable {\n \t\tStringBuffer buffer = new StringBuffer();\n \t\tbuffer.append(\"(\");\n \t\tbuffer.append(\"Body:'\" + this.getBodyContentAsString() + \"'\");\n-\t\tif (messageProperties != null) {\n-\t\t\tbuffer.append(\" \").append(messageProperties.toString());\n+\t\tif (this.messageProperties != null) {\n+\t\t\tbuffer.append(\" \").append(this.messageProperties.toString());\n \t\t}\n \t\tbuffer.append(\")\");\n \t\treturn buffer.toString();\n \t}\n \n \tprivate String getBodyContentAsString() {\n-\t\tif (body == null) {\n+\t\tif (this.body == null) {\n \t\t\treturn null;\n \t\t}\n \t\ttry {\n-\t\t\tString contentType = (messageProperties != null) ? messageProperties.getContentType() : null;\n+\t\t\tString contentType = (this.messageProperties != null) ? this.messageProperties.getContentType() : null;\n \t\t\tif (MessageProperties.CONTENT_TYPE_SERIALIZED_OBJECT.equals(contentType)) {\n-\t\t\t\treturn SerializationUtils.deserialize(body).toString();\n+\t\t\t\treturn SerializationUtils.deserialize(this.body).toString();\n \t\t\t}\n \t\t\tif (MessageProperties.CONTENT_TYPE_TEXT_PLAIN.equals(contentType)\n \t\t\t\t\t|| MessageProperties.CONTENT_TYPE_JSON.equals(contentType)\n \t\t\t\t\t|| MessageProperties.CONTENT_TYPE_JSON_ALT.equals(contentType)\n \t\t\t\t\t|| MessageProperties.CONTENT_TYPE_XML.equals(contentType)) {\n-\t\t\t\treturn new String(body, ENCODING);\n+\t\t\t\treturn new String(this.body, ENCODING);\n \t\t\t}\n \t\t}\n \t\tcatch (Exception e) {\n \t\t\t// ignore\n \t\t}\n \t\t// Comes out as '[B@....b' (so harmless)\n-\t\treturn body.toString()+\"(byte[\"+body.length+\"])\";//NOSONAR\n+\t\treturn this.body.toString()+\"(byte[\"+this.body.length+\"])\";//NOSONAR\n \t}\n \n \t@Override\n \tpublic int hashCode() {\n \t\tfinal int prime = 31;\n \t\tint result = 1;\n-\t\tresult = prime * result + Arrays.hashCode(body);\n-\t\tresult = prime * result + ((messageProperties == null) ? 0 : messageProperties.hashCode());\n+\t\tresult = prime * result + Arrays.hashCode(this.body);\n+\t\tresult = prime * result + ((this.messageProperties == null) ? 0 : this.messageProperties.hashCode());\n \t\treturn result;\n \t}\n "
+                },
+                {
+                    "commit": "175080a2f4965f3e0d9ca49a138304fd679ed432",
+                    "line number": 74,
+                    "line content": "return SerializationUtils.deserialize(body).toString();",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ],
+    "36e55998f6352ba3498be950ccab1d5f4d0ce655": [
+        {
+            "line_num": 80,
+            "line_str": "return SerializationUtils.deserialize(this.body).toString();",
+            "file_path": "spring-amqp/src/main/java/org/springframework/amqp/core/Message.java",
+            "content_around": "\t\t}\n\t\ttry {\n\t\t\tString contentType = (this.messageProperties != null) ? this.messageProperties.getContentType() : null;\n\t\t\tif (MessageProperties.CONTENT_TYPE_SERIALIZED_OBJECT.equals(contentType)) {\n\t\t\t\treturn SerializationUtils.deserialize(this.body).toString();\n\t\t\t}\n\t\t\tif (MessageProperties.CONTENT_TYPE_TEXT_PLAIN.equals(contentType)\n\t\t\t\t\t|| MessageProperties.CONTENT_TYPE_JSON.equals(contentType)\n\t\t\t\t\t|| MessageProperties.CONTENT_TYPE_JSON_ALT.equals(contentType)\n\t\t\t\t\t|| MessageProperties.CONTENT_TYPE_XML.equals(contentType)) {\n\t\t\t\treturn new String(this.body, ENCODING);\n",
+            "previous_commits": [
+                {
+                    "commit": "6d9afdfa0b15ca3ed68c26476143030be0123d25",
+                    "line number": 80,
+                    "line content": "return SerializationUtils.deserialize(this.body).toString();",
+                    "hunk(diff message)": "@@ -63,42 +63,42 @@ public class Message implements Serializable {\n \t\tStringBuffer buffer = new StringBuffer();\n \t\tbuffer.append(\"(\");\n \t\tbuffer.append(\"Body:'\" + this.getBodyContentAsString() + \"'\");\n-\t\tif (messageProperties != null) {\n-\t\t\tbuffer.append(\" \").append(messageProperties.toString());\n+\t\tif (this.messageProperties != null) {\n+\t\t\tbuffer.append(\" \").append(this.messageProperties.toString());\n \t\t}\n \t\tbuffer.append(\")\");\n \t\treturn buffer.toString();\n \t}\n \n \tprivate String getBodyContentAsString() {\n-\t\tif (body == null) {\n+\t\tif (this.body == null) {\n \t\t\treturn null;\n \t\t}\n \t\ttry {\n-\t\t\tString contentType = (messageProperties != null) ? messageProperties.getContentType() : null;\n+\t\t\tString contentType = (this.messageProperties != null) ? this.messageProperties.getContentType() : null;\n \t\t\tif (MessageProperties.CONTENT_TYPE_SERIALIZED_OBJECT.equals(contentType)) {\n-\t\t\t\treturn SerializationUtils.deserialize(body).toString();\n+\t\t\t\treturn SerializationUtils.deserialize(this.body).toString();\n \t\t\t}\n \t\t\tif (MessageProperties.CONTENT_TYPE_TEXT_PLAIN.equals(contentType)\n \t\t\t\t\t|| MessageProperties.CONTENT_TYPE_JSON.equals(contentType)\n \t\t\t\t\t|| MessageProperties.CONTENT_TYPE_JSON_ALT.equals(contentType)\n \t\t\t\t\t|| MessageProperties.CONTENT_TYPE_XML.equals(contentType)) {\n-\t\t\t\treturn new String(body, ENCODING);\n+\t\t\t\treturn new String(this.body, ENCODING);\n \t\t\t}\n \t\t}\n \t\tcatch (Exception e) {\n \t\t\t// ignore\n \t\t}\n \t\t// Comes out as '[B@....b' (so harmless)\n-\t\treturn body.toString()+\"(byte[\"+body.length+\"])\";//NOSONAR\n+\t\treturn this.body.toString()+\"(byte[\"+this.body.length+\"])\";//NOSONAR\n \t}\n \n \t@Override\n \tpublic int hashCode() {\n \t\tfinal int prime = 31;\n \t\tint result = 1;\n-\t\tresult = prime * result + Arrays.hashCode(body);\n-\t\tresult = prime * result + ((messageProperties == null) ? 0 : messageProperties.hashCode());\n+\t\tresult = prime * result + Arrays.hashCode(this.body);\n+\t\tresult = prime * result + ((this.messageProperties == null) ? 0 : this.messageProperties.hashCode());\n \t\treturn result;\n \t}\n "
+                },
+                {
+                    "commit": "175080a2f4965f3e0d9ca49a138304fd679ed432",
+                    "line number": 74,
+                    "line content": "return SerializationUtils.deserialize(body).toString();",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ],
+    "6e9e00bb5bf0aa88444146db3c2eae138cc7b0a1": [
+        {
+            "line_num": 80,
+            "line_str": "return SerializationUtils.deserialize(this.body).toString();",
+            "file_path": "spring-amqp/src/main/java/org/springframework/amqp/core/Message.java",
+            "content_around": "\t\t}\n\t\ttry {\n\t\t\tString contentType = (this.messageProperties != null) ? this.messageProperties.getContentType() : null;\n\t\t\tif (MessageProperties.CONTENT_TYPE_SERIALIZED_OBJECT.equals(contentType)) {\n\t\t\t\treturn SerializationUtils.deserialize(this.body).toString();\n\t\t\t}\n\t\t\tif (MessageProperties.CONTENT_TYPE_TEXT_PLAIN.equals(contentType)\n\t\t\t\t\t|| MessageProperties.CONTENT_TYPE_JSON.equals(contentType)\n\t\t\t\t\t|| MessageProperties.CONTENT_TYPE_JSON_ALT.equals(contentType)\n\t\t\t\t\t|| MessageProperties.CONTENT_TYPE_XML.equals(contentType)) {\n\t\t\t\treturn new String(this.body, ENCODING);\n",
+            "previous_commits": [
+                {
+                    "commit": "6d9afdfa0b15ca3ed68c26476143030be0123d25",
+                    "line number": 80,
+                    "line content": "return SerializationUtils.deserialize(this.body).toString();",
+                    "hunk(diff message)": "@@ -63,42 +63,42 @@ public class Message implements Serializable {\n \t\tStringBuffer buffer = new StringBuffer();\n \t\tbuffer.append(\"(\");\n \t\tbuffer.append(\"Body:'\" + this.getBodyContentAsString() + \"'\");\n-\t\tif (messageProperties != null) {\n-\t\t\tbuffer.append(\" \").append(messageProperties.toString());\n+\t\tif (this.messageProperties != null) {\n+\t\t\tbuffer.append(\" \").append(this.messageProperties.toString());\n \t\t}\n \t\tbuffer.append(\")\");\n \t\treturn buffer.toString();\n \t}\n \n \tprivate String getBodyContentAsString() {\n-\t\tif (body == null) {\n+\t\tif (this.body == null) {\n \t\t\treturn null;\n \t\t}\n \t\ttry {\n-\t\t\tString contentType = (messageProperties != null) ? messageProperties.getContentType() : null;\n+\t\t\tString contentType = (this.messageProperties != null) ? this.messageProperties.getContentType() : null;\n \t\t\tif (MessageProperties.CONTENT_TYPE_SERIALIZED_OBJECT.equals(contentType)) {\n-\t\t\t\treturn SerializationUtils.deserialize(body).toString();\n+\t\t\t\treturn SerializationUtils.deserialize(this.body).toString();\n \t\t\t}\n \t\t\tif (MessageProperties.CONTENT_TYPE_TEXT_PLAIN.equals(contentType)\n \t\t\t\t\t|| MessageProperties.CONTENT_TYPE_JSON.equals(contentType)\n \t\t\t\t\t|| MessageProperties.CONTENT_TYPE_JSON_ALT.equals(contentType)\n \t\t\t\t\t|| MessageProperties.CONTENT_TYPE_XML.equals(contentType)) {\n-\t\t\t\treturn new String(body, ENCODING);\n+\t\t\t\treturn new String(this.body, ENCODING);\n \t\t\t}\n \t\t}\n \t\tcatch (Exception e) {\n \t\t\t// ignore\n \t\t}\n \t\t// Comes out as '[B@....b' (so harmless)\n-\t\treturn body.toString()+\"(byte[\"+body.length+\"])\";//NOSONAR\n+\t\treturn this.body.toString()+\"(byte[\"+this.body.length+\"])\";//NOSONAR\n \t}\n \n \t@Override\n \tpublic int hashCode() {\n \t\tfinal int prime = 31;\n \t\tint result = 1;\n-\t\tresult = prime * result + Arrays.hashCode(body);\n-\t\tresult = prime * result + ((messageProperties == null) ? 0 : messageProperties.hashCode());\n+\t\tresult = prime * result + Arrays.hashCode(this.body);\n+\t\tresult = prime * result + ((this.messageProperties == null) ? 0 : this.messageProperties.hashCode());\n \t\treturn result;\n \t}\n "
+                },
+                {
+                    "commit": "175080a2f4965f3e0d9ca49a138304fd679ed432",
+                    "line number": 74,
+                    "line content": "return SerializationUtils.deserialize(body).toString();",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ],
+    "83fe9fdec2c86a57898d56c5e109debd9d5c07d9": [
+        {
+            "line_num": 74,
+            "line_str": "return SerializationUtils.deserialize(body).toString();",
+            "file_path": "spring-amqp-core/src/main/java/org/springframework/amqp/core/Message.java",
+            "content_around": "\t\t}\n\t\ttry {\n\t\t\tString contentType = (messageProperties != null) ? messageProperties.getContentType() : null;\n\t\t\tif (MessageProperties.CONTENT_TYPE_SERIALIZED_OBJECT.equals(contentType)) {\n\t\t\t\treturn SerializationUtils.deserialize(body).toString();\n\t\t\t}\n\t\t\tif (MessageProperties.CONTENT_TYPE_TEXT_PLAIN.equals(contentType)) {\n\t\t\t\t// TODO: use charset\n\t\t\t\treturn new String(body);\n\t\t\t}\n\t\t\tif (MessageProperties.CONTENT_TYPE_JSON.equals(contentType)) {\n",
+            "previous_commits": [
+                {
+                    "commit": "175080a2f4965f3e0d9ca49a138304fd679ed432",
+                    "line number": 74,
+                    "line content": "return SerializationUtils.deserialize(body).toString();",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ]
+}

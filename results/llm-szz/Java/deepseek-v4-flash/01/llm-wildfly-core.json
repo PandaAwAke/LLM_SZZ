@@ -1,0 +1,18 @@
+{
+    "40996ae6d5d3b6c1602a15f96b86a8d8a39b53eb": [
+        {
+            "line_num": 302,
+            "line_str": "final Path current = targetDir.resolve(name);",
+            "file_path": "deployment-repository/src/main/java/org/jboss/as/repository/PathUtil.java",
+            "content_around": "        final Enumeration<? extends ZipEntry> entries = zip.entries();\n        while(entries.hasMoreElements()) {\n            final ZipEntry entry = entries.nextElement();\n            final String name = entry.getName();\n            final Path current = targetDir.resolve(name);\n            if (entry.isDirectory()) {\n                if (!Files.exists(current)) {\n                    Files.createDirectories(current);\n                }\n            } else {\n                if (!Files.exists(current.getParent())) {\n",
+            "previous_commits": [
+                {
+                    "commit": "0dcfad067a64c844b70723611a1772078e0afd45",
+                    "line number": 302,
+                    "line content": "final Path current = targetDir.resolve(name);",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

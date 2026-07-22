@@ -1,0 +1,34 @@
+{
+    "3e6ab85019334a5b2a438264afdebe439cfc82b4": [
+        {
+            "line_num": 78,
+            "line_str": "Jenkins.getInstance().checkPermission(Jenkins.ADMINISTER);",
+            "file_path": "src/main/java/com/tikal/jenkins/plugins/multijob/MultiJobResumeBuild.java",
+            "content_around": "    }\n\n    @Override\n    public Object getTarget() {\n        Jenkins.getInstance().checkPermission(Jenkins.ADMINISTER);\n        return this;\n    }\n}\n",
+            "previous_commits": [
+                {
+                    "commit": "2424cec7a099fe4392f052a754fadc28de9f8d86",
+                    "line number": 78,
+                    "line content": "Jenkins.getInstance().checkPermission(Jenkins.ADMINISTER);",
+                    "hunk(diff message)": "@@ -71,4 +72,10 @@ public class MultiJobResumeBuild implements RunAction2 {\n         actions.addAll(run.getActions(ParametersAction.class));\n         return actions;\n     }\n+\n+    @Override\n+    public Object getTarget() {\n+        Jenkins.getInstance().checkPermission(Jenkins.ADMINISTER);\n+        return this;\n+    }\n }\n"
+                }
+            ]
+        }
+    ],
+    "2424cec7a099fe4392f052a754fadc28de9f8d86": [
+        {
+            "line_num": 14,
+            "line_str": "public class MultiJobResumeBuild implements RunAction2 {",
+            "file_path": "src/main/java/com/tikal/jenkins/plugins/multijob/MultiJobResumeBuild.java",
+            "content_around": "import org.kohsuke.stapler.StaplerResponse;\n\nimport java.io.IOException;\n\npublic class MultiJobResumeBuild implements RunAction2 {\n\n    private transient final AbstractBuild<?, ?> build;\n\n    public MultiJobResumeBuild(AbstractBuild<?, ?> build) {\n        this.build = build;\n    }\n",
+            "previous_commits": [
+                {
+                    "commit": "66d187f6106940796490e71543fc47935e3494be",
+                    "line number": 14,
+                    "line content": "public class MultiJobResumeBuild implements RunAction2 {",
+                    "hunk(diff message)": "@@ -3,20 +3,21 @@ package com.tikal.jenkins.plugins.multijob;\n import hudson.model.AbstractBuild;\n import hudson.model.AbstractProject;\n import hudson.model.Cause;\n-import hudson.model.ProminentProjectAction;\n+import hudson.model.Run;\n import jenkins.model.Jenkins;\n+import jenkins.model.RunAction2;\n import org.kohsuke.stapler.StaplerRequest;\n import org.kohsuke.stapler.StaplerResponse;\n \n import java.io.IOException;\n \n-public class MultiJobResumeBuild implements ProminentProjectAction {\n+public class MultiJobResumeBuild implements RunAction2 {\n \n-    private final AbstractBuild<?, ?> build;\n+    private transient final AbstractBuild<?, ?> build;\n \n     public MultiJobResumeBuild(AbstractBuild<?, ?> build) {\n-\t\tthis.build = build;\n-\t}\n+        this.build = build;\n+    }\n \n     public String getIconFileName() {\n \t\treturn \"plugin/jenkins-multijob-plugin/tool32.png\";"
+                }
+            ]
+        }
+    ]
+}

@@ -3,9 +3,12 @@ import sys
 import json
 import logging
 import argparse
+from time import perf_counter
 from typing import List, Dict, Optional, Any
 from dataclasses import dataclass
+from urllib.parse import urlparse
 
+import data_loader
 from setting import *
 sys.path.append(SZZ_FOLDER)
 
@@ -51,6 +54,15 @@ class DualOutput:
         if hasattr(self.terminal_stderr, 'flush'):
             self.terminal_stderr.flush()
         self.file.flush()
+
+
+logger = logging.getLogger('llm-szz')
+logger.setLevel(logging.INFO)  # 设置日志级别
+logger.propagate = False  # 关键：阻止日志向上传播到全局logger
+file_handler = logging.FileHandler('llm-szz.log', encoding='utf-8')
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 
 class SZZRunner:
@@ -192,7 +204,7 @@ class SZZRunner:
         
         return output
     
-    def _run_llm_szz(self, project: str, commits: List[str], repo_url: Optional[str] = None) -> Dict[str, Any]:
+    def _run_llm_szz(self, project: str, commits: List[str], repo_url: Optional[str] = None, VFC_to_CVE_mapping = None) -> Dict[str, Any]:
         """Run LLM SZZ method"""
         output_file, progress_file = self._get_output_paths(project)
         os.makedirs(os.path.dirname(output_file), exist_ok=True)
@@ -200,7 +212,7 @@ class SZZRunner:
         output = self._load_existing_output(output_file)
         completed_commits = self._load_completed_commits(progress_file)
         
-        use_temp_dir_llm = "/data1/temp/"
+        use_temp_dir_llm = False
         llm_szz = LLMSZZ(
             repo_full_name=project, 
             repo_url=repo_url, 
@@ -208,7 +220,8 @@ class SZZRunner:
             use_temp_dir=use_temp_dir_llm, 
             ast_map_path=AST_MAP_PATH,
             model=self.config.model,
-            Levenshtein_num=self.config.levenshtein_num
+            Levenshtein_num=self.config.levenshtein_num,
+            VFC_to_CVE_mapping=VFC_to_CVE_mapping,
         )
         
         for commit in commits:
@@ -237,7 +250,7 @@ class SZZRunner:
         
         return output
     
-    def run_szz(self, project: str, commits: List[str], repo_url: Optional[str] = None) -> None:
+    def run_szz(self, project: str, commits: List[str], repo_url: Optional[str] = None, VFC_to_CVE_mapping = None) -> None:
         """Main method to run SZZ based on configuration"""
         method_handlers = {
             "b": self._run_base_szz,
@@ -249,8 +262,11 @@ class SZZRunner:
         
         if self.config.method not in method_handlers:
             raise ValueError(f"Unsupported method: {self.config.method}")
-        
-        output = method_handlers[self.config.method](project, commits, repo_url)
+
+        if self.config.method == "llm":
+            output = method_handlers[self.config.method](project, commits, repo_url, VFC_to_CVE_mapping)
+        else:
+            output = method_handlers[self.config.method](project, commits, repo_url)
         
         # Save final output for non-LLM methods
         if self.config.method != "llm":
@@ -304,6 +320,82 @@ def parse_arguments() -> SZZConfig:
     )
 
 
+def extract_vfc_by_project(json_path: str = "data/cve_info_Java_revised.json") -> dict[str, list[str]]:
+    """
+    读取CVE信息JSON文件，提取VFC并按项目（repo名）分组。
+
+    Args:
+        json_path: JSON文件路径，默认为"cve_info_Java.json"
+
+    Returns:
+        字典：key为项目名（从repo URL最后一段截取），value为该项目所有VFC commit hash列表
+    """
+    with open(json_path, "r", encoding="utf-8") as f:
+        cve_data = json.load(f)
+
+    project_vfc = {}
+
+    for cve_id, cve_info in cve_data.items():
+        repo_url = cve_info["repo"]
+        vfc_list = cve_info["VFC"]
+
+        # 从repo URL中提取项目名
+        parsed_url = urlparse(repo_url)
+        path_parts = parsed_url.path.strip("/").split("/")
+        project_name = path_parts[-1]  # 取URL最后一段作为项目名
+
+        if project_name not in project_vfc:
+            project_vfc[project_name] = []
+        # 合并VFC列表（自动去重可选，这里先保留原始顺序）
+        project_vfc[project_name].extend(vfc_list)
+
+    # 可选：对每个项目的VFC列表去重（保持顺序）
+    for project in project_vfc:
+        seen = set()
+        unique_vfc = []
+        for vfc in project_vfc[project]:
+            if vfc not in seen:
+                seen.add(vfc)
+                unique_vfc.append(vfc)
+        project_vfc[project] = unique_vfc
+
+    return project_vfc
+
+
+def extract_mapping_VFC_to_CVE(json_path: str = "data/cve_info_Java_revised.json") -> dict[str, str]:
+    """
+    读取CVE信息JSON文件，提取VFC并按项目（repo名）分组。
+
+    Args:
+        json_path: JSON文件路径，默认为"cve_info_Java.json"
+
+    Returns:
+        字典：key为项目名（从repo URL最后一段截取），value为该项目所有VFC commit hash列表
+    """
+    with open(json_path, "r", encoding="utf-8") as f:
+        cve_data = json.load(f)
+
+    vfc_to_cve = {}
+
+    for cve_id, cve_info in cve_data.items():
+        vfc_list = cve_info["VFC"]
+        for vfc in vfc_list:
+            vfc_to_cve[vfc] = cve_id
+
+    return vfc_to_cve
+
+
+
+def get_real_project(project: str) -> str:
+    with open('repo_mapping.json', 'r', encoding='utf-8') as f:
+        repo_mapping = json.load(f)
+    if project in repo_mapping:
+        repo_url = repo_mapping[project]
+        real_project = repo_url.rstrip('/').split('/')[-1]
+        return real_project
+    return project
+
+
 def main() -> None:
     """Main function"""
     # Parse arguments and setup configuration
@@ -317,22 +409,45 @@ def main() -> None:
     runner = SZZRunner(config)
     
     # Load projects and commits
-    projects = load_project(config.language)
-    project_commits = load_annotated_commits()
-    
+    # projects = load_project(config.language)
+    # project_commits = load_annotated_commits()
+
+    # project_commits = extract_vfc_by_project("data/cve_info_Java_revised.json")
+
+    # DATASET = "data/cve_info_Java_sample.json"
+    DATASET = "data/cve_info_Java_revised_vszz.json"
+
+    project_commits = extract_vfc_by_project(DATASET)
+    VFC_to_CVE_mapping = extract_mapping_VFC_to_CVE(DATASET)
+
+    start = False
+
     # Process each project
     for project in project_commits:
+        # if project in projects:
+        stat_time_start = perf_counter()
+
+        if project == 'cayenne':
+            start = True
+
+        if not start:
+            continue
+
+        print("Project:", project)
+        print("project_commits[project]", project_commits[project])
+
+        commits = project_commits[project]
+
+        # project = get_real_project(project)
         repo_folder = os.path.join(REPOS_DIR, project)
-        
+
         if not os.path.exists(repo_folder):
             print(f"Skipping {project} as the repository folder does not exist.")
             continue
-        
-        if project in projects:
-            print("Project:", project)
-            print("project_commits[project]", project_commits[project])
-            
-            runner.run_szz(project, project_commits[project])
+        runner.run_szz(project, commits, VFC_to_CVE_mapping=VFC_to_CVE_mapping)
+
+        stat_time_end = perf_counter()
+        logger.info(f"[Time] Project {project} time: {stat_time_end - stat_time_start}")
 
 
 if __name__ == "__main__":

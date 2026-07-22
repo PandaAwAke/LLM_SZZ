@@ -1,0 +1,18 @@
+{
+    "a9aff088f327278a8873aef47fa8f80d3c5932fd": [
+        {
+            "line_num": 87,
+            "line_str": "if(!getSecretKey().equals(in.readUTF())) {",
+            "file_path": "core/src/main/java/jenkins/slaves/JnlpSlaveAgentProtocol.java",
+            "content_around": "            out = new PrintWriter(socket.getOutputStream(),true);\n        }\n\n        protected void run() throws IOException, InterruptedException {\n            if(!getSecretKey().equals(in.readUTF())) {\n                error(out, \"Unauthorized access\");\n                return;\n            }\n\n            final String nodeName = in.readUTF();\n            SlaveComputer computer = (SlaveComputer) Jenkins.getInstance().getComputer(nodeName);\n",
+            "previous_commits": [
+                {
+                    "commit": "5f51089b323499355956a2d8f23ed866fae28fff",
+                    "line number": 87,
+                    "line content": "if(!getSecretKey().equals(in.readUTF())) {",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

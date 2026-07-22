@@ -1,0 +1,34 @@
+{
+    "28067a29fd13cdf8e21b440fc65c6dd67872522f": [
+        {
+            "line_num": 155,
+            "line_str": "saxParser = saxParserFactory.newSAXParser();",
+            "file_path": "nar-bundles/standard-bundle/standard-processors/src/main/java/org/apache/nifi/processors/standard/SplitXml.java",
+            "content_around": "            public void process(final InputStream rawIn) throws IOException {\n                try (final InputStream in = new BufferedInputStream(rawIn)) {\n                    SAXParser saxParser = null;\n                    try {\n                        saxParser = saxParserFactory.newSAXParser();\n                        final XMLReader reader = saxParser.getXMLReader();\n                        reader.setContentHandler(parser);\n                        reader.parse(new InputSource(in));\n                    } catch (final ParserConfigurationException | SAXException e) {\n                        logger.error(\"Unable to parse {} due to {}\", new Object[]{original, e});\n                        failed.set(true);\n",
+            "previous_commits": [
+                {
+                    "commit": "4d998c12c95a6e5ce3d66c0d861e75e33b5cf013",
+                    "line number": 155,
+                    "line content": "saxParser = saxParserFactory.newSAXParser();",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ],
+    "dbf259508c2b8e176d8cb837177aaadbf44f0670": [
+        {
+            "line_num": 906,
+            "line_str": "response.addHeader(FRAME_OPTIONS, SAME_ORIGIN);",
+            "file_path": "nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-jetty/src/main/java/org/apache/nifi/web/server/JettyServer.java",
+            "content_around": "                throws IOException, ServletException {\n\n            // set frame options accordingly\n            final HttpServletResponse response = (HttpServletResponse) resp;\n            response.addHeader(FRAME_OPTIONS, SAME_ORIGIN);\n\n            filterChain.doFilter(req, resp);\n        }\n\n        @Override\n        public void init(final FilterConfig config) {\n",
+            "previous_commits": [
+                {
+                    "commit": "ac8e57259f8e4d8183d938f46a28f3c73b595940",
+                    "line number": 906,
+                    "line content": "response.addHeader(FRAME_OPTIONS, SAME_ORIGIN);",
+                    "hunk(diff message)": "@@ -883,4 +893,27 @@ public class JettyServer implements NiFiServer {\n         }\n     }\n \n+    private static final Filter FRAME_OPTIONS_FILTER = new Filter() {\n+        private static final String FRAME_OPTIONS = \"X-Frame-Options\";\n+        private static final String SAME_ORIGIN = \"SAMEORIGIN\";\n+\n+        @Override\n+        public void doFilter(final ServletRequest req, final ServletResponse resp, final FilterChain filterChain)\n+                throws IOException, ServletException {\n+\n+            // set frame options accordingly\n+            final HttpServletResponse response = (HttpServletResponse) resp;\n+            response.addHeader(FRAME_OPTIONS, SAME_ORIGIN);\n+\n+            filterChain.doFilter(req, resp);\n+        }\n+\n+        @Override\n+        public void init(final FilterConfig config) {\n+        }\n+\n+        @Override\n+        public void destroy() {\n+        }\n+    };\n }\n"
+                }
+            ]
+        }
+    ]
+}

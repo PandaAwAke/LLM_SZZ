@@ -1,0 +1,18 @@
+{
+    "e1c4cc6ae692cc8d1c367460dbf79343e996f9bd": [
+        {
+            "line_num": 286,
+            "line_str": "SAXParser parser = SAXParserFactory.newInstance().newSAXParser();",
+            "file_path": "Baselet/src/com/baselet/diagram/io/DiagramFileHandler.java",
+            "content_around": "\r\n\tpublic void doOpen() {\r\n\t\ttry {\r\n\t\t\ttry {\r\n\t\t\t\tSAXParser parser = SAXParserFactory.newInstance().newSAXParser();\r\n\t\t\t\tFileInputStream input = new FileInputStream(this.file);\r\n\t\t\t\tXmlInputHandler xmlhandler = new XmlInputHandler(this.handler);\r\n\t\t\t\tparser.parse(input, xmlhandler);\r\n\t\t\t} catch (SAXException e) {\r\n\t\t\t\tlog.error(\"Error parsing the inputstream.\", e);\r\n\t\t\t}\r\n",
+            "previous_commits": [
+                {
+                    "commit": "bc754fc8927f541bf3ff3e7c2889735641ae8e55",
+                    "line number": 286,
+                    "line content": "SAXParser parser = SAXParserFactory.newInstance().newSAXParser();",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ]
+}

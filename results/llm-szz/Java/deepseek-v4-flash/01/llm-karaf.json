@@ -1,0 +1,34 @@
+{
+    "434e52502528e91e20d2f87cec7732f1e6e554c2": [
+        {
+            "line_num": 44,
+            "line_str": "props.put(\"alias\", \"/instance\");",
+            "file_path": "webconsole/instance/src/main/java/org/apache/karaf/webconsole/instance/Activator.java",
+            "content_around": "        instancePlugin.start();\n\n        Dictionary<String, String> props = new Hashtable<>();\n        props.put(\"felix.webconsole.label\", \"instance\");\n        props.put(\"alias\", \"/instance\");\n        register(Servlet.class, instancePlugin, props);\n    }\n\n    @Override\n    protected void doStop() {\n        super.doStop();\n",
+            "previous_commits": [
+                {
+                    "commit": "f032ce95d41c50e01eb785ecd921eedef9b40d9e",
+                    "line number": 44,
+                    "line content": "props.put(\"alias\", \"/instance\");",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ],
+    "cfa213ad680ded70b70bf0c648891a06386ef632": [
+        {
+            "line_num": 44,
+            "line_str": "props.put(\"alias\", \"/instance\");",
+            "file_path": "webconsole/instance/src/main/java/org/apache/karaf/webconsole/instance/Activator.java",
+            "content_around": "        instancePlugin.start();\n\n        Dictionary<String, String> props = new Hashtable<>();\n        props.put(\"felix.webconsole.label\", \"instance\");\n        props.put(\"alias\", \"/instance\");\n        register(Servlet.class, instancePlugin, props);\n    }\n\n    @Override\n    protected void doStop() {\n        super.doStop();\n",
+            "previous_commits": [
+                {
+                    "commit": "f032ce95d41c50e01eb785ecd921eedef9b40d9e",
+                    "line number": 44,
+                    "line content": "props.put(\"alias\", \"/instance\");",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

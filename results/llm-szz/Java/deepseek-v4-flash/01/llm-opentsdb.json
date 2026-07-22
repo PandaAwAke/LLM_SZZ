@@ -1,0 +1,18 @@
+{
+    "a6a9ec4bc8a526951bc25bb19a145782bafaa8b0": [
+        {
+            "line_num": 326,
+            "line_str": "result = (Double)expression.execute(context);",
+            "file_path": "src/query/expression/ExpressionIterator.java",
+            "content_around": "            context.set(variable, val);\n          }\n        }\n      }\n      result = (Double)expression.execute(context);\n      dps[i].reset(timestamp, result);\n    }\n    return dps;\n  }\n  \n  /** @return a list of expression results. You can keep this list and check the \n",
+            "previous_commits": [
+                {
+                    "commit": "35717b127ef9cee78918bbdf04558c9564c9555d",
+                    "line number": 326,
+                    "line content": "result = (Double)expression.execute(context);",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

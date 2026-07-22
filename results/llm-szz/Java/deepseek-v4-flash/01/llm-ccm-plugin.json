@@ -1,0 +1,18 @@
+{
+    "066cb43b4413b3490d822ec8b8a32072ebd213ca": [
+        {
+            "line_num": 71,
+            "line_str": "Digester digester = new Digester();",
+            "file_path": "src/main/java/hudson/plugins/ccm/parser/CcmParser.java",
+            "content_around": "\t@Override\n\tpublic Collection<FileAnnotation> parse(InputStream file, String moduleName)\n\t\t\tthrows InvocationTargetException {\n\t\ttry {\n            Digester digester = new Digester();\n            digester.setValidating(false);\n            digester.setClassLoader(CcmParser.class.getClassLoader());\n\n            String rootXPath = \"ccm\";\n            digester.addObjectCreate(rootXPath, Ccm.class);\n            digester.addSetProperties(rootXPath);\n",
+            "previous_commits": [
+                {
+                    "commit": "0bdbebe1b3d73341bf67051986aec66944aee928",
+                    "line number": 71,
+                    "line content": "Digester digester = new Digester();",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "b9a7f6ad72073ddd40254c0058710e87a073047d": [
+        {
+            "line_num": 88,
+            "line_str": "relativeUrl = relativeUrl.replace(\"{\" + name + \"}\", canonicalizeForPath(value, encoded));",
+            "file_path": "retrofit/src/main/java/retrofit2/RequestBuilder.java",
+            "content_around": "    if (relativeUrl == null) {\n      // The relative URL is cleared when the first query parameter is set.\n      throw new AssertionError();\n    }\n    relativeUrl = relativeUrl.replace(\"{\" + name + \"}\", canonicalizeForPath(value, encoded));\n  }\n\n  private static String canonicalizeForPath(String input, boolean alreadyEncoded) {\n    int codePoint;\n    for (int i = 0, limit = input.length(); i < limit; i += Character.charCount(codePoint)) {\n      codePoint = input.codePointAt(i);\n",
+            "previous_commits": [
+                {
+                    "commit": "01d6fb1a133cea6fac18f2ef1ecab1cbee86b569",
+                    "line number": 88,
+                    "line content": "relativeUrl = relativeUrl.replace(\"{\" + name + \"}\", canonicalizeForPath(value, encoded));",
+                    "hunk(diff message)": "@@ -85,20 +85,20 @@ final class RequestBuilder {\n       // The relative URL is cleared when the first query parameter is set.\n       throw new AssertionError();\n     }\n-    relativeUrl = relativeUrl.replace(\"{\" + name + \"}\", canonicalize(value, encoded));\n+    relativeUrl = relativeUrl.replace(\"{\" + name + \"}\", canonicalizeForPath(value, encoded));\n   }\n \n-  private static String canonicalize(String input, boolean alreadyEncoded) {\n+  private static String canonicalizeForPath(String input, boolean alreadyEncoded) {\n     int codePoint;\n     for (int i = 0, limit = input.length(); i < limit; i += Character.charCount(codePoint)) {\n       codePoint = input.codePointAt(i);\n       if (codePoint < 0x20 || codePoint >= 0x7f\n-          || PATH_SEGMENT_ENCODE_SET.indexOf(codePoint) != -1\n-          || (codePoint == '%' && !alreadyEncoded)) {\n+          || PATH_SEGMENT_ALWAYS_ENCODE_SET.indexOf(codePoint) != -1\n+          || (!alreadyEncoded && (codePoint == '/' || codePoint == '%'))) {\n         // Slow path: the character at i requires encoding!\n         Buffer out = new Buffer();\n         out.writeUtf8(input, 0, i);\n-        canonicalize(out, input, i, limit, alreadyEncoded);\n+        canonicalizeForPath(out, input, i, limit, alreadyEncoded);\n         return out.readUtf8();\n       }\n     }"
+                },
+                {
+                    "commit": "a9c0512fa6f88933702bf0e12243f5a584c01f66",
+                    "line number": 88,
+                    "line content": "relativeUrl = relativeUrl.replace(\"{\" + name + \"}\", canonicalize(value, encoded));",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ]
+}

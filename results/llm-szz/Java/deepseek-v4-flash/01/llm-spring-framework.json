@@ -1,0 +1,34 @@
+{
+    "d63cfc8eebc396be009e733a81ebb4c984811f6e": [
+        {
+            "line_num": 36,
+            "line_str": "private static final IdGenerator idGenerator = new AlternativeJdkIdGenerator();",
+            "file_path": "spring-websocket/src/main/java/org/springframework/web/socket/sockjs/client/SockJsUrlInfo.java",
+            "content_around": " * @since 4.1\n */\npublic class SockJsUrlInfo {\n\n\tprivate static final IdGenerator idGenerator = new AlternativeJdkIdGenerator();\n\n\n\tprivate final URI sockJsUrl;\n\n\tprivate String serverId;\n\n",
+            "previous_commits": [
+                {
+                    "commit": "e82df99a22b7f511fc8e2c92a8a206e06d16bd62",
+                    "line number": 36,
+                    "line content": "private static final IdGenerator idGenerator = new AlternativeJdkIdGenerator();",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ],
+    "7576274874deeccb6da6b09a8d5bd62e8b5538b7": [
+        {
+            "line_num": 225,
+            "line_str": "return XMLInputFactory.newInstance();",
+            "file_path": "spring-web/src/main/java/org/springframework/http/converter/xml/Jaxb2CollectionHttpMessageConverter.java",
+            "content_around": "\t *\n\t * @return the created factory\n\t */\n\tprotected XMLInputFactory createXmlInputFactory() {\n\t\treturn XMLInputFactory.newInstance();\n\t}\n\n}\n",
+            "previous_commits": [
+                {
+                    "commit": "ed3823b045fd19cdb801609eb034c93dd4d75c3f",
+                    "line number": 225,
+                    "line content": "return XMLInputFactory.newInstance();",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

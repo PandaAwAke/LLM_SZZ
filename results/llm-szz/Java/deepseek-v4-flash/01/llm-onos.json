@@ -1,0 +1,24 @@
+{
+    "4b19da6ce94de4865a365c200d6e8169ffb2184f": [
+        {
+            "line_num": 194,
+            "line_str": "File appDir = new File(appsDir, appName);",
+            "file_path": "core/common/src/main/java/org/onosproject/common/app/ApplicationArchive.java",
+            "content_around": "     *\n     * @param appName application name\n     */\n    public void purgeApplication(String appName) {\n        File appDir = new File(appsDir, appName);\n        try {\n            Tools.removeDirectory(appDir);\n        } catch (IOException e) {\n            throw new ApplicationException(\"Unable to purge application \" + appName, e);\n        }\n        if (appDir.exists()) {\n",
+            "previous_commits": [
+                {
+                    "commit": "62ad95f3f1b7dfab11ba291dc25eb8c95d80dcc8",
+                    "line number": 194,
+                    "line content": "File appDir = new File(appsDir, appName);",
+                    "hunk(diff message)": "@@ -158,28 +174,45 @@ public class ApplicationArchive\n         }\n     }\n \n+    // Indicates whether the stream encoded in the given bytes is plain XML.\n+    private boolean isPlainXml(byte[] bytes) {\n+        return substring(bytes, XML_MAGIC.length()).equals(XML_MAGIC) ||\n+                substring(bytes, APP_MAGIC_DEPTH).contains(APP_MAGIC);\n+    }\n+\n+    // Returns the substring of maximum possible length from the specified bytes.\n+    private String substring(byte[] bytes, int length) {\n+        return new String(bytes, 0, Math.min(bytes.length, length), Charset.forName(\"UTF-8\"));\n+    }\n+\n     /**\n      * Purges the application archive directory.\n      *\n      * @param appName application name\n      */\n     public void purgeApplication(String appName) {\n+        File appDir = new File(appsDir, appName);\n         try {\n-            Tools.removeDirectory(new File(appsDir, appName));\n+            Tools.removeDirectory(appDir);\n         } catch (IOException e) {\n             throw new ApplicationException(\"Unable to purge application \" + appName, e);\n         }\n+        if (appDir.exists()) {\n+            throw new ApplicationException(\"Unable to purge application \" + appName);\n+        }\n     }\n \n     /**\n-     * Returns application archive stream for the specified application.\n+     * Returns application archive stream for the specified application. This\n+     * will be either the application ZIP file or the application XML file.\n      *\n      * @param appName application name\n      * @return application archive stream\n      */\n     public InputStream getApplicationInputStream(String appName) {\n         try {\n-            return new FileInputStream(appFile(appName, appName + \".zip\"));\n+            File appFile = appFile(appName, appName + \".zip\");\n+            return new FileInputStream(appFile.exists() ? appFile : appFile(appName, APP_XML));\n         } catch (FileNotFoundException e) {\n             throw new ApplicationException(\"Application \" + appName + \" not found\");\n         }"
+                },
+                {
+                    "commit": "02aeb0339f584153798906c5f3a1c2809ead511e",
+                    "line number": 171,
+                    "line content": "return new FileInputStream(appFile(appName, appName + \".zip\"));",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

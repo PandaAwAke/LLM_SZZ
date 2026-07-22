@@ -1,0 +1,34 @@
+{
+    "2b31723708256c08c5209308eb6ccfb03e2ab990": [
+        {
+            "line_num": 222,
+            "line_str": "String finalValue = headerValue.replaceAll(\"\\\\s+\", \"\").replaceAll(\"\\\\n\",\"\").replaceAll(\"[^\\\\x20-\\\\x7E]+\", \" \");;",
+            "file_path": "src/android/FileTransfer.java",
+            "content_around": "                      * that value.\n                      */\n\n                    String headerValue = headers.getString(headerKey);\n                    String finalValue = headerValue.replaceAll(\"\\\\s+\", \"\").replaceAll(\"\\\\n\",\"\").replaceAll(\"[^\\\\x20-\\\\x7E]+\", \" \");;\n                    headerValues.put(finalValue);\n                }\n\n                connection.setRequestProperty(headerKey, headerValues.getString(0));\n                for (int i = 1; i < headerValues.length(); ++i) {\n                    connection.addRequestProperty(headerKey, headerValues.getString(i));\n",
+            "previous_commits": [
+                {
+                    "commit": "ad6647120db12f0e67ee4a952a71ea494a39a475",
+                    "line number": 222,
+                    "line content": "String finalValue = headerValue.replaceAll(\"\\\\s+\", \"\").replaceAll(\"\\\\n\",\"\").replaceAll(\"[^\\\\x20-\\\\x7E]+\", \" \");;",
+                    "hunk(diff message)": "@@ -197,12 +197,32 @@ public class FileTransfer extends CordovaPlugin {\n     private static void addHeadersToRequest(URLConnection connection, JSONObject headers) {\n         try {\n             for (Iterator<?> iter = headers.keys(); iter.hasNext(); ) {\n+                /* RFC 2616 says that non-ASCII characters and control\n+                 * characters are not allowed in header names or values.\n+                 * Additionally, spaces are not allowed in header names.\n+                 * RFC 2046 Quoted-printable encoding may be used to encode\n+                 * arbitrary characters, but we donon- not do that encoding here.\n+                 */\n                 String headerKey = iter.next().toString();\n+                headerKey = headerKey.replaceAll(\"\\\\n\",\"\")\n+                        .replaceAll(\"\\\\s+\",\"\")\n+                        .replaceAll(\"[^\\\\x20-\\\\x7E]+\", \"\");\n+\n                 JSONArray headerValues = headers.optJSONArray(headerKey);\n                 if (headerValues == null) {\n                     headerValues = new JSONArray();\n-                    headerValues.put(headers.getString(headerKey));\n+\n+                     /* RFC 2616 also says that any amount of consecutive linear\n+                      * whitespace within a header value can be replaced with a\n+                      * single space character, without affecting the meaning of\n+                      * that value.\n+                      */\n+\n+                    String headerValue = headers.getString(headerKey);\n+                    String finalValue = headerValue.replaceAll(\"\\\\s+\", \"\").replaceAll(\"\\\\n\",\"\").replaceAll(\"[^\\\\x20-\\\\x7E]+\", \" \");;\n+                    headerValues.put(finalValue);\n                 }\n+\n                 connection.setRequestProperty(headerKey, headerValues.getString(0));\n                 for (int i = 1; i < headerValues.length(); ++i) {\n                     connection.addRequestProperty(headerKey, headerValues.getString(i));\n"
+                }
+            ]
+        }
+    ],
+    "ad6647120db12f0e67ee4a952a71ea494a39a475": [
+        {
+            "line_num": 244,
+            "line_str": "headerValues.put(headers.getString(headerKey));",
+            "file_path": "src/android/FileTransfer.java",
+            "content_around": "                String headerKey = iter.next().toString();\n                JSONArray headerValues = headers.optJSONArray(headerKey);\n                if (headerValues == null) {\n                    headerValues = new JSONArray();\n                    headerValues.put(headers.getString(headerKey));\n                }\n                connection.setRequestProperty(headerKey, headerValues.getString(0));\n                for (int i = 1; i < headerValues.length(); ++i) {\n                    connection.addRequestProperty(headerKey, headerValues.getString(i));\n                }\n            }\n",
+            "previous_commits": [
+                {
+                    "commit": "35e89b3aeccc9377d85ea382091ea50a0915949f",
+                    "line number": 244,
+                    "line content": "headerValues.put(headers.getString(headerKey));",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

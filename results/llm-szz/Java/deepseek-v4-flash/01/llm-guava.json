@@ -1,0 +1,18 @@
+{
+    "f89ece5721b2f637fe754937ff1f3c86d80bb196": [
+        {
+            "line_num": 267,
+            "line_str": "this.longs = new AtomicLongArray(length);",
+            "file_path": "android/guava/src/com/google/common/util/concurrent/AtomicDoubleArray.java",
+            "content_around": "    s.defaultReadObject();\n\n    // Read in array length and allocate array\n    int length = s.readInt();\n    this.longs = new AtomicLongArray(length);\n\n    // Read in all elements in the proper order.\n    for (int i = 0; i < length; i++) {\n      set(i, s.readDouble());\n    }\n  }\n",
+            "previous_commits": [
+                {
+                    "commit": "9b94fb3965c6869b0ac47420958a4bbae0b2d54c",
+                    "line number": 267,
+                    "line content": "this.longs = new AtomicLongArray(length);",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

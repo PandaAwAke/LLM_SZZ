@@ -1,0 +1,18 @@
+{
+    "f5cfb2a1869d1a52930cbd3138278a6e2c1b22e6": [
+        {
+            "line_num": 76,
+            "line_str": "locationFile = new File(location);",
+            "file_path": "src/main/java/org/elasticsearch/repositories/fs/FsRepository.java",
+            "content_around": "        if (location == null) {\n            logger.warn(\"using local fs location for gateway, should be changed to be a shared location across nodes\");\n            throw new RepositoryException(name.name(), \"missing location\");\n        } else {\n            locationFile = new File(location);\n        }\n        int concurrentStreams = repositorySettings.settings().getAsInt(\"concurrent_streams\", componentSettings.getAsInt(\"concurrent_streams\", 5));\n        ExecutorService concurrentStreamPool = EsExecutors.newScaling(1, concurrentStreams, 60, TimeUnit.SECONDS, EsExecutors.daemonThreadFactory(settings, \"[fs_stream]\"));\n        blobStore = new FsBlobStore(componentSettings, concurrentStreamPool, locationFile);\n        this.chunkSize = repositorySettings.settings().getAsBytesSize(\"chunk_size\", componentSettings.getAsBytesSize(\"chunk_size\", null));\n        this.compress = repositorySettings.settings().getAsBoolean(\"compress\", componentSettings.getAsBoolean(\"compress\", false));\n",
+            "previous_commits": [
+                {
+                    "commit": "510397aecdb95047995930f48dc439614aeafce0",
+                    "line number": 76,
+                    "line content": "locationFile = new File(location);",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

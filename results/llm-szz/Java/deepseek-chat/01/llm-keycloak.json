@@ -1,0 +1,18 @@
+{
+    "9b75b603e3a5f5ba6deff13cbb45b070bf2d2239": [
+        {
+            "line_num": 121,
+            "line_str": "CookieHelper.addCookie(KEYCLOAK_STATE_CHECKER, stateChecker, cookiePath, null, null, -1, secureOnly, true);",
+            "file_path": "services/src/main/java/org/keycloak/services/resources/AbstractSecuredLocalService.java",
+            "content_around": "        } else {\n            stateChecker = KeycloakModelUtils.generateSecret();\n            String cookiePath = AuthenticationManager.getRealmCookiePath(realm, uriInfo);\n            boolean secureOnly = realm.getSslRequired().isRequired(clientConnection);\n            CookieHelper.addCookie(KEYCLOAK_STATE_CHECKER, stateChecker, cookiePath, null, null, -1, secureOnly, true);\n        }\n    }\n\n    protected abstract Set<String> getValidPaths();\n\n    /**\n",
+            "previous_commits": [
+                {
+                    "commit": "bf4d5f4df9de31ae263c1e49e3c668dd1bbae386",
+                    "line number": 121,
+                    "line content": "CookieHelper.addCookie(KEYCLOAK_STATE_CHECKER, stateChecker, cookiePath, null, null, -1, secureOnly, true);",
+                    "hunk(diff message)": "@@ -106,14 +111,14 @@ public abstract class AbstractSecuredLocalService {\n     }\n \n     protected void updateCsrfChecks() {\n-        Cookie cookie = headers.getCookies().get(AccountService.KEYCLOAK_STATE_CHECKER);\n+        Cookie cookie = headers.getCookies().get(KEYCLOAK_STATE_CHECKER);\n         if (cookie != null) {\n             stateChecker = cookie.getValue();\n         } else {\n-            stateChecker = UUID.randomUUID().toString();\n+            stateChecker = KeycloakModelUtils.generateSecret();\n             String cookiePath = AuthenticationManager.getRealmCookiePath(realm, uriInfo);\n             boolean secureOnly = realm.getSslRequired().isRequired(clientConnection);\n-            CookieHelper.addCookie(AccountService.KEYCLOAK_STATE_CHECKER, stateChecker, cookiePath, null, null, -1, secureOnly, true);\n+            CookieHelper.addCookie(KEYCLOAK_STATE_CHECKER, stateChecker, cookiePath, null, null, -1, secureOnly, true);\n         }\n     }\n \n"
+                }
+            ]
+        }
+    ]
+}

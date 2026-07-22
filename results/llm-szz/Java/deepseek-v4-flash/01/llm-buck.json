@@ -1,0 +1,18 @@
+{
+    "8c5500981812564877bd122c0f8fab48d3528ddf": [
+        {
+            "line_num": 73,
+            "line_str": "try (ObjectInputStream ois = new ObjectInputStream(zipis)) {",
+            "file_path": "src/com/facebook/buck/cli/ParserCacheCommand.java",
+            "content_around": "      try (FileInputStream fis = new FileInputStream(loadFilename);\n          ZipInputStream zipis = new ZipInputStream(fis); ) {\n        ZipEntry entry = zipis.getNextEntry();\n        Preconditions.checkState(entry.getName().equals(\"parser_data\"));\n        try (ObjectInputStream ois = new ObjectInputStream(zipis)) {\n          RemoteDaemonicParserState state;\n          try {\n            state = (RemoteDaemonicParserState) ois.readObject();\n          } catch (ClassNotFoundException e) {\n            params.getConsole().printErrorText(\"Invalid file format\");\n            return ExitCode.COMMANDLINE_ERROR;\n",
+            "previous_commits": [
+                {
+                    "commit": "e6d6dfacb93311425f4c1336a1107c657e647bb9",
+                    "line number": 73,
+                    "line content": "try (ObjectInputStream ois = new ObjectInputStream(zipis)) {",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

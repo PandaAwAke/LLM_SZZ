@@ -1,0 +1,18 @@
+{
+    "ee031c5e62b0d358250d06c2aa6722518579a6c5": [
+        {
+            "line_num": 204,
+            "line_str": "Thread.currentThread().setContextClassLoader(classLoader);",
+            "file_path": "framework/modules/geronimo-jmx-remoting/src/main/java/org/apache/geronimo/jmxremoting/JMXConnector.java",
+            "content_around": "        filter.enableType(JMXConnectionNotification.CLOSED);\n        filter.enableType(JMXConnectionNotification.FAILED);\n        server.addNotificationListener(authenticator, filter, null);\n        ClassLoader oldCl = Thread.currentThread().getContextClassLoader();\n        Thread.currentThread().setContextClassLoader(classLoader);\n        try {\n            server.start();\n        } finally {\n            Thread.currentThread().setContextClassLoader(oldCl);\n        }\n        log.debug(\"Started JMXConnector \" + server.getAddress());\n",
+            "previous_commits": [
+                {
+                    "commit": "b60bf0a205e0257cb3279b08fb6c8d48bc7ce67a",
+                    "line number": 204,
+                    "line content": "Thread.currentThread().setContextClassLoader(classLoader);",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

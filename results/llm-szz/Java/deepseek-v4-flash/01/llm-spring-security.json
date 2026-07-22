@@ -1,0 +1,18 @@
+{
+    "c70b65c5df0e170a2d34d812b83db0b7bc71ea25": [
+        {
+            "line_num": 66,
+            "line_str": "if (this.issuer.equals(token.getIssuer())) {",
+            "file_path": "oauth2/oauth2-jose/src/main/java/org/springframework/security/oauth2/jwt/JwtIssuerValidator.java",
+            "content_around": "\t@Override\n\tpublic OAuth2TokenValidatorResult validate(Jwt token) {\n\t\tAssert.notNull(token, \"token cannot be null\");\n\n\t\tif (this.issuer.equals(token.getIssuer())) {\n\t\t\treturn OAuth2TokenValidatorResult.success();\n\t\t} else {\n\t\t\treturn OAuth2TokenValidatorResult.failure(INVALID_ISSUER);\n\t\t}\n\t}\n}\n",
+            "previous_commits": [
+                {
+                    "commit": "7c524aa0c8eb814fc9b86caca8cf290e2fcd9330",
+                    "line number": 66,
+                    "line content": "if (this.issuer.equals(token.getIssuer())) {",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

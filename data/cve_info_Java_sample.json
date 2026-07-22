@@ -1,0 +1,16 @@
+{
+    "CVE-2019-3772": {
+        "VFC": [
+            "59c69ed40d3755ef59f80872e0ea711adbb13620"
+        ],
+        "VIC": [
+            "88de8117aa23f204fb20ce6528a5166a47f035ed",
+            "ddc2e1cda98060a5e08d06ffb0950c379ef62ad2",
+            "6cda0b8e7c71c356a300f4bce17eac42308f5c34",
+            "99d26a5b04a5132eb7b348cb30bfbba92b71b8cd",
+            "17832c2913565d8be6e5c341cdbf970e26def046",
+            "2128c1e21e668b71167389d608855d908fd63782"
+        ],
+        "repo": "https://github.com/spring-projects/spring-integration"
+    }
+}

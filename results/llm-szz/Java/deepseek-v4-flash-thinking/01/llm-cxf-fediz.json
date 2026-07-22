@@ -1,0 +1,30 @@
+{
+    "0006581e9cacbeef46381a223e5671e524d416b6": [
+        {
+            "line_num": 68,
+            "line_str": "validateAudienceRestrictions(federationResponse.getAudience(), request.getRequestURL().toString());",
+            "file_path": "plugins/core/src/main/java/org/apache/cxf/fediz/core/handler/SigninHandler.java",
+            "content_around": "                LOG.debug(\"Validating RSTR...\");\n                // process and validate the token\n                try {\n                    FedizResponse federationResponse = processSigninRequest(responseToken, request, response);\n                    validateAudienceRestrictions(federationResponse.getAudience(), request.getRequestURL().toString());\n                    LOG.debug(\"RSTR validated successfully\");\n                    T principal = createPrincipal(request, response, federationResponse);\n                    resumeRequest(request, response, federationResponse);\n                    return principal;\n                } catch (ProcessingException e) {\n                    LOG.error(\"Federation processing failed: \" + e.getMessage());\n",
+            "previous_commits": [
+                {
+                    "commit": "2b008eacd31e1720794089226a12107a57efb969",
+                    "line number": 68,
+                    "line content": "validateAudienceRestrictions(federationResponse.getAudience(), request.getRequestURL().toString());",
+                    "hunk(diff message)": "@@ -56,21 +59,20 @@ public class SigninHandler<T> implements RequestHandler<T> {\n     public T handleRequest(HttpServletRequest request, HttpServletResponse response) {\n         if (request.getMethod().equals(\"POST\")) {\n             LOG.debug(\"Sign-In-Response received\");\n-            String wresult = request.getParameter(FederationConstants.PARAM_RESULT);\n-            if (wresult != null) {\n+            String responseToken = getResponseToken(request);\n+            if (responseToken != null) {\n                 LOG.debug(\"Validating RSTR...\");\n                 // process and validate the token\n                 try {\n-                    FedizResponse federationResponse = processSigninRequest(request, response);\n+                    FedizResponse federationResponse = processSigninRequest(responseToken, request, response);\n+                    validateAudienceRestrictions(federationResponse.getAudience(), request.getRequestURL().toString());\n                     LOG.debug(\"RSTR validated successfully\");\n                     T principal = createPrincipal(request, response, federationResponse);\n                     resumeRequest(request, response, federationResponse);\n                     return principal;\n                 } catch (ProcessingException e) {\n-                    LOG.error(\"RSTR validated failed.\");\n+                    LOG.error(\"Federation processing failed: \" + e.getMessage());\n                 }\n-            } else {\n-                throw new RuntimeException(\"Missing required parameter 'wresult'\");\n             }\n         } else {\n             throw new RuntimeException(\"Incorrect method GET for Sign-In-Response\");"
+                },
+                {
+                    "commit": "ce7b4f1ae15e688486dcfaca1683e4d63cb47970",
+                    "line number": 61,
+                    "line content": "FedizResponse federationResponse = processSigninRequest(request, response);",
+                    "hunk(diff message)": "@@ -58,9 +58,9 @@ public abstract class SigninHandler implements RequestHandler {\n                 LOG.debug(\"Validating RSTR...\");\n                 // process and validate the token\n                 try {\n-                    processSigninRequest(request, response);\n+                    FedizResponse federationResponse = processSigninRequest(request, response);\n                     LOG.info(\"RSTR validated successfully\");\n-                    resumeRequest();\n+                    resumeRequest(request, response, federationResponse);\n                     return true;\n                 } catch (ProcessingException e) {\n                     LOG.error(\"RSTR validated failed.\");"
+                },
+                {
+                    "commit": "0f6a65debd2143339bdbea572b35ba94b2d8c368",
+                    "line number": 61,
+                    "line content": "processSigninRequest(request, response);",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

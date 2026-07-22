@@ -1,0 +1,56 @@
+{
+    "f42b193b15a29b772fc576b2d0f2497e7474a7e9": [
+        {
+            "line_num": 98,
+            "line_str": "if (header == null) {",
+            "file_path": "src/main/java/io/vertx/ext/web/handler/impl/CSRFHandlerImpl.java",
+            "content_around": "  }\n\n  private boolean validateToken(String header) {\n\n    if (header == null) {\n      return false;\n    }\n\n    String[] tokens = header.split(\"\\\\.\");\n    if (tokens.length != 3) {\n      return false;\n",
+            "previous_commits": [
+                {
+                    "commit": "85de7938e83ff38205e7f2f0e78fcbc808241554",
+                    "line number": 98,
+                    "line content": "if (header == null) {",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ],
+    "98891b1d9e022b467a3e4674aca4d1889849b1d5": [
+        {
+            "line_num": 98,
+            "line_str": "if (header == null) {",
+            "file_path": "src/main/java/io/vertx/ext/web/handler/impl/CSRFHandlerImpl.java",
+            "content_around": "  }\n\n  private boolean validateToken(String header) {\n\n    if (header == null) {\n      return false;\n    }\n\n    String[] tokens = header.split(\"\\\\.\");\n    if (tokens.length != 3) {\n      return false;\n",
+            "previous_commits": [
+                {
+                    "commit": "85de7938e83ff38205e7f2f0e78fcbc808241554",
+                    "line number": 98,
+                    "line content": "if (header == null) {",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ],
+    "57a65dce6f4c5aa5e3ce7288685e7f3447eb8f3b": [
+        {
+            "line_num": 135,
+            "line_str": "String path = Utils.removeDots(Utils.urlDecode(context.normalisedPath(), false));",
+            "file_path": "vertx-web/src/main/java/io/vertx/ext/web/handler/impl/StaticHandlerImpl.java",
+            "content_around": "    if (request.method() != HttpMethod.GET && request.method() != HttpMethod.HEAD) {\n      if (log.isTraceEnabled()) log.trace(\"Not GET or HEAD so ignoring request\");\n      context.next();\n    } else {\n      String path = Utils.removeDots(Utils.urlDecode(context.normalisedPath(), false));\n      // if the normalized path is null it cannot be resolved\n      if (path == null) {\n        log.warn(\"Invalid path: \" + context.request().path() + \" so returning 404\");\n        context.fail(NOT_FOUND.code());\n        return;\n      }\n",
+            "previous_commits": [
+                {
+                    "commit": "3282b2fbdf06ac428f43c20275fd6dcc8f6a011a",
+                    "line number": 135,
+                    "line content": "String path = Utils.removeDots(Utils.urlDecode(context.normalisedPath(), false));",
+                    "hunk(diff message)": "@@ -132,7 +132,7 @@ public class StaticHandlerImpl implements StaticHandler {\n       if (log.isTraceEnabled()) log.trace(\"Not GET or HEAD so ignoring request\");\n       context.next();\n     } else {\n-      String path = context.normalisedPath();\n+      String path = Utils.removeDots(Utils.urlDecode(context.normalisedPath(), false));\n       // if the normalized path is null it cannot be resolved\n       if (path == null) {\n         log.warn(\"Invalid path: \" + context.request().path() + \" so returning 404\");"
+                },
+                {
+                    "commit": "d867369f00c2f4db24798bd023cddc37d4617a54",
+                    "line number": 103,
+                    "line content": "String path = context.normalisedPath();",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ]
+}

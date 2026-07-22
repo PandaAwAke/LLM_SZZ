@@ -1,0 +1,18 @@
+{
+    "6fc896b65ed871be33dcf453cde924bf73cf83db": [
+        {
+            "line_num": 339,
+            "line_str": "reader.setFeature(\"http://xml.org/sax/features/namespaces\", true);",
+            "file_path": "core/cayenne-jdk1.4/src/main/java/org/apache/cayenne/util/Util.java",
+            "content_around": "        // Get the encapsulated SAX XMLReader\n        XMLReader reader = saxParser.getXMLReader();\n\n        // set default features\n        reader.setFeature(\"http://xml.org/sax/features/namespaces\", true);\n\n        return reader;\n    }\n\n    /**\n     * Returns package name for the Java class as a path separated with forward slash\n",
+            "previous_commits": [
+                {
+                    "commit": "fc186f50392bf8c804b1d314971c92efa5f52fc3",
+                    "line number": 339,
+                    "line content": "reader.setFeature(\"http://xml.org/sax/features/namespaces\", true);",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ]
+}

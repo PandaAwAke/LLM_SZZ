@@ -1,0 +1,18 @@
+{
+    "15f39fc49d9f25bca872badb48e708a8bb815ea7": [
+        {
+            "line_num": 63,
+            "line_str": "return null;",
+            "file_path": "core/src/main/java/hudson/tasks/junit/XMLEntityResolver.java",
+            "content_around": "\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\t// Default fallback\n\t\treturn null;\n\t}\n\n\tprivate static final Logger LOGGER = Logger.getLogger( XMLEntityResolver.class.getName() );\n}\n",
+            "previous_commits": [
+                {
+                    "commit": "50869a1742b887e134a3a684d4c1dbf90ae6b9a9",
+                    "line number": 63,
+                    "line content": "return null;",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ]
+}

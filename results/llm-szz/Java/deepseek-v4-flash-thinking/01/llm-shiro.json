@@ -1,0 +1,18 @@
+{
+    "b15ab927709ca18ea4a02538be01919a19ab65af": [
+        {
+            "line_num": 185,
+            "line_str": "return decodeRequestString(request, contextPath);",
+            "file_path": "web/src/org/jsecurity/web/WebUtils.java",
+            "content_around": "        if (\"/\".equals(contextPath)) {\n            // Invalid case, but happens for includes on Jetty: silently adapt it.\n            contextPath = \"\";\n        }\n        return decodeRequestString(request, contextPath);\n    }\n\n    /**\n     * Decode the given source string with a URLDecoder. The encoding will be taken\n     * from the request, falling back to the default \"ISO-8859-1\".\n     * <p>The default implementation uses <code>URLDecoder.decode(input, enc)</code>.\n",
+            "previous_commits": [
+                {
+                    "commit": "9fd5bb2ec9c6106fd0843e80b28212f0dd973408",
+                    "line number": 185,
+                    "line content": "return decodeRequestString(request, contextPath);",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,582 @@
+{
+  "CVE-2015-1830": {
+    "VFC": [
+      "729c4731574ffffaf58ebefdbaeb3bd19ed1c7b7",
+      "9fd5cb7dfe0fcc431f99d5e14206e0090e72f36b"
+    ],
+    "VIC": [
+      "e6d20f3932b556377218ac2e353a2cc99d26d1ea"
+    ],
+    "repo": "https://github.com/apache/activemq"
+  },
+  "CVE-2012-6092": {
+    "VFC": [
+      "51eb87a84be88d28383ea48f6e341ffe1203c5ba"
+    ],
+    "VIC": [
+      "40a7d3b6ac35d2ecb34e85fc3403d2e48e33874e",
+      "e72f43f8e6f23a29112a6e85dc44d707eeb4e547"
+    ],
+    "repo": "https://github.com/apache/activemq"
+  },
+  "CVE-2013-1880": {
+    "VFC": [
+      "fafd12dfd4f71336f8e32c090d40ed1445959b40"
+    ],
+    "VIC": [
+      "40a7d3b6ac35d2ecb34e85fc3403d2e48e33874e"
+    ],
+    "repo": "https://github.com/apache/activemq"
+  },
+  "CVE-2014-3576": {
+    "VFC": [
+      "00921f22ff9a8792d7663ef8fadd4823402a6324"
+    ],
+    "VIC": [
+      "fb3b6dba571b9dbffaac45ac920037760ceb6dbc"
+    ],
+    "repo": "https://github.com/apache/activemq"
+  },
+  "CVE-2018-11771": {
+    "VFC": [
+      "a41ce6892cb0590b2e658704434ac0dbcb6834c8"
+    ],
+    "VIC": [
+      "008ca948dadacea8d1a2662c577fdcb25f32d5e2"
+    ],
+    "repo": "https://github.com/apache/commons-compress"
+  },
+  "CVE-2018-1324": {
+    "VFC": [
+      "2a2f1dc48e22a34ddb72321a4db211da91aa933b"
+    ],
+    "VIC": [
+      "a433f625f89c1d464b05186411ff20802e292fb4"
+    ],
+    "repo": "https://github.com/apache/commons-compress"
+  },
+  "CVE-2015-5204": {
+    "VFC": [
+      "2b31723708256c08c5209308eb6ccfb03e2ab990",
+      "ad6647120db12f0e67ee4a952a71ea494a39a475"
+    ],
+    "VIC": [
+      "35e89b3aeccc9377d85ea382091ea50a0915949f"
+    ],
+    "repo": "https://github.com/apache/cordova-plugin-file-transfer"
+  },
+  "CVE-2016-8739": {
+    "VFC": [
+      "9deb2d179758d3da47ce3ea492c2606c0a6a8475",
+      "d9e2a6e7260ea12efa5355ffdfbf0b2415bccd14",
+      "8e4970d931ae72f92c54d170a844b37137b8fda6"
+    ],
+    "VIC": [
+      "88a9451b92180609b7bb93d0314bc8384f0c24a4"
+    ],
+    "repo": "https://github.com/apache/cxf"
+  },
+  "CVE-2017-3156": {
+    "VFC": [
+      "1338469f7d25cfcda75b547c68bed95bd97903ac"
+    ],
+    "VIC": [
+      "3dc932f502e3486d7de5825d097b4d7000d8ecbe",
+      "e03c1d9c28b0e7dd523b9b78649f8876994173bd",
+      "f591f53b81a277fdfaacbe84d2bd911565d89826"
+    ],
+    "repo": "https://github.com/apache/cxf"
+  },
+  "CVE-2013-0239": {
+    "VFC": [
+      "295a4e2f9eb3e7e0513980202949ccc424dee2d4"
+    ],
+    "VIC": [
+      "a0b2f45c966b688edb63e5967ee19f462077ca17",
+      "44def033ba61a666c0b86bd833a0014a18a4f5dc"
+    ],
+    "repo": "https://github.com/apache/cxf"
+  },
+  "CVE-2015-5253": {
+    "VFC": [
+      "845eccb6484b43ba02875c71e824db23ae4f20c0"
+    ],
+    "VIC": [
+      "4224f1ff1c70027c9df680985d188b1857a0bad5"
+    ],
+    "repo": "https://github.com/apache/cxf"
+  },
+  "CVE-2013-6408": {
+    "VFC": [
+      "7239a57a51ea0f4d05dd330ce5e15e4f72f72747"
+    ],
+    "VIC": [
+      "1ea1e3ca372f0c6b0a24107231174a07e4db7232"
+    ],
+    "repo": "https://github.com/apache/lucene-solr"
+  },
+  "CVE-2016-6802": {
+    "VFC": [
+      "b15ab927709ca18ea4a02538be01919a19ab65af"
+    ],
+    "VIC": [
+      "9fd5bb2ec9c6106fd0843e80b28212f0dd973408"
+    ],
+    "repo": "https://github.com/apache/shiro"
+  },
+  "CVE-2014-7809": {
+    "VFC": [
+      "1f301038a751bf16e525607c3db513db835b2999"
+    ],
+    "VIC": [
+      "7a0a6d58016b244e9521442f1e9666521f5c61b9"
+    ],
+    "repo": "https://github.com/apache/struts"
+  },
+  "CVE-2017-9805": {
+    "VFC": [
+      "19494718865f2fb7da5ea363de3822f87fbda264",
+      "6dd6e5cfb7b5e020abffe7e8091bd63fe97c10af"
+    ],
+    "VIC": [
+      "6229ad7a4726717bf594e9b4e4afa90e1e028829"
+    ],
+    "repo": "https://github.com/apache/struts"
+  },
+  "CVE-2016-0785": {
+    "VFC": [
+      "15857a69e7baf3675804495a5954cd0756ac8364"
+    ],
+    "VIC": [
+      "c01d3a92db7f71f751a0522912d24bcf4a94a1b0"
+    ],
+    "repo": "https://github.com/apache/struts"
+  },
+  "CVE-2012-4387": {
+    "VFC": [
+      "87935af56a27235e9399308ee1fcfb74f8edcefa"
+    ],
+    "VIC": [
+      "0c543aef318341ca9bd482e15f1637497b8a4dfd"
+    ],
+    "repo": "https://github.com/apache/struts"
+  },
+  "CVE-2016-3087": {
+    "VFC": [
+      "98d2692e434fe7f4d445ade24fe2c9860de1c13f",
+      "6bd694b7980494c12d49ca1bf39f12aec3e03e2f"
+    ],
+    "VIC": [
+      "c01d3a92db7f71f751a0522912d24bcf4a94a1b0"
+    ],
+    "repo": "https://github.com/apache/struts"
+  },
+  "CVE-2013-4002": {
+    "VFC": [
+      "266e837852e0f0e3c8c1ad572b6fc4dbb4ded17b"
+    ],
+    "VIC": [
+      "6fec9ee0c874aba003c6652a39c4de16036f6e4f"
+    ],
+    "repo": "https://github.com/apache/xerces2-j"
+  },
+  "CVE-2018-6331": {
+    "VFC": [
+      "8c5500981812564877bd122c0f8fab48d3528ddf"
+    ],
+    "VIC": [
+      "e6d6dfacb93311425f4c1336a1107c657e647bb9"
+    ],
+    "repo": "https://github.com/facebook/buck"
+  },
+  "CVE-2013-4378": {
+    "VFC": [
+      "aacbc46151ff4ac1ca34ce0899c2a6113071c66e"
+    ],
+    "VIC": [
+      "2a260d96e9e905e7e574b8d92af8e2abd8ee4cc6"
+    ],
+    "repo": "https://github.com/javamelody/javamelody"
+  },
+  "CVE-2017-1000391": {
+    "VFC": [
+      "566a8ddb885f0bef9bc848e60455c0aabbf0c1d3"
+    ],
+    "VIC": [
+      "a018bbabfb44da6fb7e5ae4b5013da34fca40086"
+    ],
+    "repo": "https://github.com/jenkinsci/jenkins"
+  },
+  "CVE-2014-2064": {
+    "VFC": [
+      "fbf96734470caba9364f04e0b77b0bae7293a1ec"
+    ],
+    "VIC": [
+      "011730f30132ee32dd575bd1ae47fe1cf3c55a31"
+    ],
+    "repo": "https://github.com/jenkinsci/jenkins"
+  },
+  "CVE-2018-1000406": {
+    "VFC": [
+      "c3351d2e7c3edfee82b9470e9aa1168982296072"
+    ],
+    "VIC": [
+      "d6139d2a061ed31e5177bfcf9d8d3d27fa9a67a4"
+    ],
+    "repo": "https://github.com/jenkinsci/jenkins"
+  },
+  "CVE-2014-2067": {
+    "VFC": [
+      "5d57c855f3147bfc5e7fda9252317b428a700014"
+    ],
+    "VIC": [
+      "910bcfa5b8743a2226cc7364130b6de10f120334"
+    ],
+    "repo": "https://github.com/jenkinsci/jenkins"
+  },
+  "CVE-2015-8103": {
+    "VFC": [
+      "5bd9b55a2a3249939fd78c501b8959a804c1164b"
+    ],
+    "VIC": [
+      "0d4117e48fe1152c07ab49dd9b662eb14a459e58"
+    ],
+    "repo": "https://github.com/jenkinsci/jenkins"
+  },
+  "CVE-2014-2058": {
+    "VFC": [
+      "b6b2a367a7976be80a799c6a49fa6c58d778b50e"
+    ],
+    "VIC": [
+      "36342d71e29e0620f803a7470ce96c61761648d8"
+    ],
+    "repo": "https://github.com/jenkinsci/jenkins"
+  },
+  "CVE-2014-2068": {
+    "VFC": [
+      "0530a6645aac10fec005614211660e98db44b5eb"
+    ],
+    "VIC": [
+      "6784369b13c598fcd85c06f28d1a7d76cc20dcc8"
+    ],
+    "repo": "https://github.com/jenkinsci/jenkins"
+  },
+  "CVE-2017-1000395": {
+    "VFC": [
+      "7b1f8e96a8d97dd09e5e093fcdb010b3295acc77"
+    ],
+    "VIC": [
+      "f09983ec8fc95bd85e7cacba33253ac88ff227b3"
+    ],
+    "repo": "https://github.com/jenkinsci/jenkins"
+  },
+  "CVE-2018-1999044": {
+    "VFC": [
+      "e5046911c57e60a1d6d8aca9b21bd9093b0f3763"
+    ],
+    "VIC": [
+      "350bf691654b9d2700322964179b155b02c83c14"
+    ],
+    "repo": "https://github.com/jenkinsci/jenkins"
+  },
+  "CVE-2017-1000398": {
+    "VFC": [
+      "da06fd471cea79123821c778228eeb08e1cedcc7"
+    ],
+    "VIC": [
+      "bf3c016358b3a5ebc8626d1952c55a5988239ece",
+      "92a2c48fab69b08eb0b9e3b8ff9a202d2c6ad09c"
+    ],
+    "repo": "https://github.com/jenkinsci/jenkins"
+  },
+  "CVE-2018-1062": {
+    "VFC": [
+      "820888c4e8dfbe79dc55e1ba8e72edb0ebd88906",
+      "d0e33ace71b7603450fc1aa7725f53dbc5458318"
+    ],
+    "VIC": [
+      "831d6d4d416abdbec21ace4aeb1086fe2cb60fe3"
+    ],
+    "repo": "https://github.com/oVirt/ovirt-engine"
+  },
+  "CVE-2016-4464": {
+    "VFC": [
+      "0006581e9cacbeef46381a223e5671e524d416b6"
+    ],
+    "VIC": [
+      "0f6a65debd2143339bdbea572b35ba94b2d8c368"
+    ],
+    "repo": "https://github.com/apache/cxf-fediz"
+  },
+  "CVE-2017-1000390": {
+    "VFC": [
+      "3e6ab85019334a5b2a438264afdebe439cfc82b4",
+      "2424cec7a099fe4392f052a754fadc28de9f8d86"
+    ],
+    "VIC": [
+      "fa09157624e6661417e1b97f337c5037e85a6c84"
+    ],
+    "repo": "https://github.com/jenkinsci/tikal-multijob-plugin"
+  },
+  "CVE-2017-8045": {
+    "VFC": [
+      "296d481f980fcbecbee01244e3644e254470a86e",
+      "36e55998f6352ba3498be950ccab1d5f4d0ce655",
+      "6e9e00bb5bf0aa88444146db3c2eae138cc7b0a1",
+      "83fe9fdec2c86a57898d56c5e109debd9d5c07d9"
+    ],
+    "VIC": [
+      "0d08676e161afb21b4e4c62985f8804fc20c5a4b"
+    ],
+    "repo": "https://github.com/spring-projects/spring-amqp"
+  },
+  "CVE-2015-0201": {
+    "VFC": [
+      "d63cfc8eebc396be009e733a81ebb4c984811f6e"
+    ],
+    "VIC": [
+      "e82df99a22b7f511fc8e2c92a8a206e06d16bd62"
+    ],
+    "repo": "https://github.com/spring-projects/spring-framework"
+  },
+  "CVE-2013-4152": {
+    "VFC": [
+      "7576274874deeccb6da6b09a8d5bd62e8b5538b7"
+    ],
+    "VIC": [
+      "ed3823b045fd19cdb801609eb034c93dd4d75c3f"
+    ],
+    "repo": "https://github.com/spring-projects/spring-framework"
+  },
+  "CVE-2013-7315": {
+    "VFC": [
+      "7576274874deeccb6da6b09a8d5bd62e8b5538b7"
+    ],
+    "VIC": [
+      "ed3823b045fd19cdb801609eb034c93dd4d75c3f"
+    ],
+    "repo": "https://github.com/spring-projects/spring-framework"
+  },
+  "CVE-2018-1114": {
+    "VFC": [
+      "7f22aa0090296eb00280f878e3731bb71d40f9eb",
+      "882d5884f2614944a0c2ae69bafd9d13bfc5b64a"
+    ],
+    "VIC": [
+      "ca37f8df602a5d65d476a69fbc8ab3177565d538"
+    ],
+    "repo": "https://github.com/undertow-io/undertow"
+  },
+  "CVE-2018-10862": {
+    "VFC": [
+      "40996ae6d5d3b6c1602a15f96b86a8d8a39b53eb"
+    ],
+    "VIC": [
+      "0dcfad067a64c844b70723611a1772078e0afd45"
+    ],
+    "repo": "https://github.com/wildfly/wildfly-core"
+  },
+  "CVE-2018-11758": {
+    "VFC": [
+      "6fc896b65ed871be33dcf453cde924bf73cf83db"
+    ],
+    "VIC": [
+      "fc186f50392bf8c804b1d314971c92efa5f52fc3"
+    ],
+    "repo": "https://github.com/apache/cayenne"
+  },
+  "CVE-2014-0050": {
+    "VFC": [
+      "c61ff05b3241cb14d989b67209e57aa71540417a"
+    ],
+    "VIC": [
+      "d423dbce722380807f3c6cc26e5c3758937b0234"
+    ],
+    "repo": "https://github.com/apache/commons-fileupload"
+  },
+  "CVE-2018-11787": {
+    "VFC": [
+      "434e52502528e91e20d2f87cec7732f1e6e554c2",
+      "cfa213ad680ded70b70bf0c648891a06386ef632"
+    ],
+    "VIC": [
+      "f032ce95d41c50e01eb785ecd921eedef9b40d9e"
+    ],
+    "repo": "https://github.com/apache/karaf"
+  },
+  "CVE-2018-12972": {
+    "VFC": [
+      "a6a9ec4bc8a526951bc25bb19a145782bafaa8b0"
+    ],
+    "VIC": [
+      "35717b127ef9cee78918bbdf04558c9564c9555d"
+    ],
+    "repo": "https://github.com/OpenTSDB/opentsdb"
+  },
+  "CVE-2016-6652": {
+    "VFC": [
+      "b8e7fecccc7dc8edcabb4704656a7abe6352c08f"
+    ],
+    "VIC": [
+      "e8c5666070fc195dc6e9431a92013bff2ff926a0"
+    ],
+    "repo": "https://github.com/spring-projects/spring-data-jpa"
+  },
+  "CVE-2018-15801": {
+    "VFC": [
+      "c70b65c5df0e170a2d34d812b83db0b7bc71ea25"
+    ],
+    "VIC": [
+      "7c524aa0c8eb814fc9b86caca8cf290e2fcd9330"
+    ],
+    "repo": "https://github.com/spring-projects/spring-security"
+  },
+  "CVE-2018-12540": {
+    "VFC": [
+      "f42b193b15a29b772fc576b2d0f2497e7474a7e9",
+      "98891b1d9e022b467a3e4674aca4d1889849b1d5"
+    ],
+    "VIC": [
+      "85de7938e83ff38205e7f2f0e78fcbc808241554"
+    ],
+    "repo": "https://github.com/vert-x3/vertx-web"
+  },
+  "CVE-2018-12542": {
+    "VFC": [
+      "57a65dce6f4c5aa5e3ce7288685e7f3447eb8f3b"
+    ],
+    "VIC": [
+      "d867369f00c2f4db24798bd023cddc37d4617a54"
+    ],
+    "repo": "https://github.com/vert-x3/vertx-web"
+  },
+  "CVE-2016-8744": {
+    "VFC": [
+      "3ae4a4d156341a53e54a2fe07192f46b15763d06"
+    ],
+    "VIC": [
+      "5519831ec6dd7d489590e196fb030699ad41a974"
+    ],
+    "repo": "https://github.com/apache/brooklyn-server"
+  },
+  "CVE-2013-1777": {
+    "VFC": [
+      "ee031c5e62b0d358250d06c2aa6722518579a6c5"
+    ],
+    "VIC": [
+      "b60bf0a205e0257cb3279b08fb6c8d48bc7ce67a"
+    ],
+    "repo": "https://github.com/apache/geronimo"
+  },
+  "CVE-2018-1000054": {
+    "VFC": [
+      "066cb43b4413b3490d822ec8b8a32072ebd213ca"
+    ],
+    "VIC": [
+      "0bdbebe1b3d73341bf67051986aec66944aee928"
+    ],
+    "repo": "https://github.com/jenkinsci/ccm-plugin"
+  },
+  "CVE-2018-1000109": {
+    "VFC": [
+      "f81b058289caf3332ae40d599a36a3665b1fa13c"
+    ],
+    "VIC": [
+      "f42724ef94959ba91a4cec2977b73cb745a0c0f4"
+    ],
+    "repo": "https://github.com/jenkinsci/google-play-android-publisher-plugin"
+  },
+  "CVE-2018-1000112": {
+    "VFC": [
+      "54b4f82e80c89d51b12bc64258f6b59e98b0c16a"
+    ],
+    "VIC": [
+      "df5d889792a9ed9af8f42b4a8142bf0a2224058c"
+    ],
+    "repo": "https://github.com/jenkinsci/mercurial-plugin"
+  },
+  "CVE-2018-1999020": {
+    "VFC": [
+      "4b19da6ce94de4865a365c200d6e8169ffb2184f"
+    ],
+    "VIC": [
+      "02aeb0339f584153798906c5f3a1c2809ead511e"
+    ],
+    "repo": "https://github.com/opennetworkinglab/onos"
+  },
+  "CVE-2018-1309": {
+    "VFC": [
+      "28067a29fd13cdf8e21b440fc65c6dd67872522f"
+    ],
+    "VIC": [
+      "4d998c12c95a6e5ce3d66c0d861e75e33b5cf013"
+    ],
+    "repo": "https://github.com/apache/nifi"
+  },
+  "CVE-2018-17192": {
+    "VFC": [
+      "dbf259508c2b8e176d8cb837177aaadbf44f0670"
+    ],
+    "VIC": [
+      "ac8e57259f8e4d8183d938f46a28f3c73b595940"
+    ],
+    "repo": "https://github.com/apache/nifi"
+  },
+  "CVE-2018-10237": {
+    "VFC": [
+      "f89ece5721b2f637fe754937ff1f3c86d80bb196"
+    ],
+    "VIC": [
+      "9b1de11918c7e17b02c883365b1d13532988ee05",
+      "8f203c48cbbfe47569d8101a12a8fc9384e09674",
+      "9b94fb3965c6869b0ac47420958a4bbae0b2d54c"
+    ],
+    "repo": "https://github.com/google/guava"
+  },
+  "CVE-2018-1000056": {
+    "VFC": [
+      "15f39fc49d9f25bca872badb48e708a8bb815ea7"
+    ],
+    "VIC": [
+      "50869a1742b887e134a3a684d4c1dbf90ae6b9a9",
+      "df4abf637212aed6306754dd15a34556b3f1c1b1"
+    ],
+    "repo": "https://github.com/jenkinsci/junit-plugin"
+  },
+  "CVE-2014-3678": {
+    "VFC": [
+      "f0f6aeef2032696c97d4b015dd51fa2b841b0473"
+    ],
+    "VIC": [
+      "265514eaa1bc0a1a0be5fa8b2c581d35d36446a6"
+    ],
+    "repo": "https://github.com/jenkinsci/monitoring-plugin"
+  },
+  "CVE-2018-19413": {
+    "VFC": [
+      "7b567ba3d15ed7dd0b0bba0330686487e35af85c"
+    ],
+    "VIC": [
+      "6bc9a1d45c04a067371834980203ef753d32086d"
+    ],
+    "repo": "https://github.com/SonarSource/sonarqube"
+  },
+  "CVE-2018-1000850": {
+    "VFC": [
+      "b9a7f6ad72073ddd40254c0058710e87a073047d"
+    ],
+    "VIC": [
+      "4d5081891e0d9f3968251842acdef41a45cc2330"
+    ],
+    "repo": "https://github.com/square/retrofit"
+  },
+  "CVE-2018-1000548": {
+    "VFC": [
+      "e1c4cc6ae692cc8d1c367460dbf79343e996f9bd"
+    ],
+    "VIC": [
+      "bc754fc8927f541bf3ff3e7c2889735641ae8e55"
+    ],
+    "repo": "https://github.com/umlet/umlet"
+  }
+}

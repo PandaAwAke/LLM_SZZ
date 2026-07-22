@@ -346,12 +346,16 @@ class LLMSZZ(AbstractSZZ):
 
     """
 
-    def __init__(self, repo_full_name: str, repo_url: str, repos_dir: str = None, use_temp_dir: bool = True, ast_map_path = None , model = None , Levenshtein_num = None ):
+    def __init__(self, repo_full_name: str, repo_url: str, repos_dir: str = None, use_temp_dir: bool = False, ast_map_path = None , model = None , Levenshtein_num = None, VFC_to_CVE_mapping = None):
         super().__init__(repo_full_name, repo_url, repos_dir, use_temp_dir)
         self.ast_map_path = ast_map_path
         self.model = model
         self.Levenshtein_num = Levenshtein_num
-        
+        if VFC_to_CVE_mapping:
+            self.VFC_to_CVE_mapping = VFC_to_CVE_mapping
+        else:
+            self.VFC_to_CVE_mapping = fixing_commit_to_CVE
+
     def find_diff_message(self,fix_commit_hash: str):
         fixing_commit_diff = ""
         commit = PyDrillerGitRepo(self.repository_path).get_commit(fix_commit_hash)
@@ -360,7 +364,11 @@ class LLMSZZ(AbstractSZZ):
         return fixing_commit_diff
 
     def get_cve_detail(self, cve):
-        file_path = '/data1/cvelistV5-main/' + cve + '.json'
+        year = cve[4:8]
+        suffix_part = cve.split('-')[-1]
+        prefix = suffix_part[:-3]
+
+        file_path = 'E:\\github\\cvelistV5\\cves\\' + f'{year}\\{prefix}xxx\\' + cve + '.json'
         with open(file_path, 'r') as file:
             data = json.load(file)
         descriptions = data['containers']['cna']['descriptions'][0]['value']
@@ -394,7 +402,7 @@ class LLMSZZ(AbstractSZZ):
             fixing_commit_diff = fixing_commit_diff + mod.diff
         commit_message = commit.msg
 
-        cve = fixing_commit_to_CVE[fix_commit_hash]
+        cve = self.VFC_to_CVE_mapping[fix_commit_hash]
 
 
         self.cve_detail = self.get_cve_detail(cve)

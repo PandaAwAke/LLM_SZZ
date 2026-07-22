@@ -1,0 +1,18 @@
+{
+    "f81b058289caf3332ae40d599a36a3665b1fa13c": [
+        {
+            "line_num": 31,
+            "line_str": "ListBoxModel credentials = getCredentialsListBox(GooglePlayPublisher.class);",
+            "file_path": "src/main/java/org/jenkinsci/plugins/googleplayandroidpublisher/GooglePlayBuildStepDescriptor.java",
+            "content_around": "        load();\n    }\n\n    public ListBoxModel doFillGoogleCredentialsIdItems() {\n        ListBoxModel credentials = getCredentialsListBox(GooglePlayPublisher.class);\n        if (credentials.isEmpty()) {\n            credentials.add(\"(No Google Play account credentials have been added to Jenkins)\", null);\n        }\n        return credentials;\n    }\n\n",
+            "previous_commits": [
+                {
+                    "commit": "ca45adbe672224e24bef9cc216e9fbf04a6d118d",
+                    "line number": 31,
+                    "line content": "ListBoxModel credentials = getCredentialsListBox(GooglePlayPublisher.class);",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

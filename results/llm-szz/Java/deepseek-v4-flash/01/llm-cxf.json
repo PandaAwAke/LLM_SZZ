@@ -1,0 +1,110 @@
+{
+    "9deb2d179758d3da47ce3ea492c2606c0a6a8475": [
+        {
+            "line_num": 92,
+            "line_str": "options.setResolveEntities(false);",
+            "file_path": "rt/rs/extensions/providers/src/main/java/org/apache/cxf/jaxrs/provider/atom/AbstractAtomProvider.java",
+            "content_around": "        synchronized (parser) {\n            ParserOptions options = parser.getDefaultParserOptions();\n            if (options != null) {\n                options.setAutodetectCharset(autodetectCharset);\n                options.setResolveEntities(false);\n            }\n        }\n        Document<T> doc = parser.parse(is);\n        return doc.getRoot();\n    }\n\n",
+            "previous_commits": [
+                {
+                    "commit": "37b616d3e542f4b8adb131171a4fad337278be5c",
+                    "line number": 92,
+                    "line content": "options.setResolveEntities(false);",
+                    "hunk(diff message)": "@@ -89,6 +89,7 @@ public abstract class AbstractAtomProvider<T extends Element>\n             ParserOptions options = parser.getDefaultParserOptions();\n             if (options != null) {\n                 options.setAutodetectCharset(autodetectCharset);\n+                options.setResolveEntities(false);\n             }\n         }\n         Document<T> doc = parser.parse(is);\n"
+                }
+            ]
+        }
+    ],
+    "d9e2a6e7260ea12efa5355ffdfbf0b2415bccd14": [
+        {
+            "line_num": 94,
+            "line_str": "Document<T> doc = parser.parse(is);",
+            "file_path": "rt/rs/extensions/providers/src/main/java/org/apache/cxf/jaxrs/provider/atom/AbstractAtomProvider.java",
+            "content_around": "            if (options != null) {\n                options.setAutodetectCharset(autodetectCharset);\n            }\n        }\n        Document<T> doc = parser.parse(is);\n        return doc.getRoot();\n    }\n\n    public void setFormattedOutput(boolean formattedOutput) {\n        this.formattedOutput = formattedOutput;\n    }\n",
+            "previous_commits": [
+                {
+                    "commit": "7d30aec26dc1a64a05d838d081e1ec09cc5a6ee7",
+                    "line number": 94,
+                    "line content": "Document<T> doc = parser.parse(is);",
+                    "hunk(diff message)": "@@ -82,7 +84,14 @@ public abstract class AbstractAtomProvider<T extends Element>\n     public T readFrom(Class<T> clazz, Type t, Annotation[] a, MediaType mt, \n                          MultivaluedMap<String, String> headers, InputStream is) \n         throws IOException {\n-        Document<T> doc = ATOM_ENGINE.getParser().parse(is);\n+        Parser parser = ATOM_ENGINE.getParser();\n+        synchronized (parser) {\n+            ParserOptions options = parser.getDefaultParserOptions();\n+            if (options != null) {\n+                options.setAutodetectCharset(autodetectCharset);\n+            }\n+        }\n+        Document<T> doc = parser.parse(is);\n         return doc.getRoot();\n     }\n "
+                },
+                {
+                    "commit": "42d3104c050e94c82e1659c0226646b66a42e14c",
+                    "line number": 66,
+                    "line content": "Document<T> doc = ATOM_ENGINE.getParser().parse(is);",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ],
+    "8e4970d931ae72f92c54d170a844b37137b8fda6": [
+        {
+            "line_num": 92,
+            "line_str": "options.setResolveEntities(false);",
+            "file_path": "rt/rs/extensions/providers/src/main/java/org/apache/cxf/jaxrs/provider/atom/AbstractAtomProvider.java",
+            "content_around": "        synchronized (parser) {\n            ParserOptions options = parser.getDefaultParserOptions();\n            if (options != null) {\n                options.setAutodetectCharset(autodetectCharset);\n                options.setResolveEntities(false);\n            }\n        }\n        Document<T> doc = parser.parse(is);\n        return doc.getRoot();\n    }\n\n",
+            "previous_commits": [
+                {
+                    "commit": "8ae768d769543c82c834ee9f9df883c9b5bbe56b",
+                    "line number": 92,
+                    "line content": "options.setResolveEntities(false);",
+                    "hunk(diff message)": "@@ -89,6 +89,7 @@ public abstract class AbstractAtomProvider<T extends Element>\n             ParserOptions options = parser.getDefaultParserOptions();\n             if (options != null) {\n                 options.setAutodetectCharset(autodetectCharset);\n+                options.setResolveEntities(false);\n             }\n         }\n         Document<T> doc = parser.parse(is);\n"
+                }
+            ]
+        }
+    ],
+    "1338469f7d25cfcda75b547c68bed95bd97903ac": [
+        {
+            "line_num": 64,
+            "line_str": "boolean validMac = Arrays.equals(serverMacData, clientMacData);",
+            "file_path": "rt/rs/security/oauth-parent/oauth2/src/main/java/org/apache/cxf/rs/security/oauth2/tokens/hawk/AbstractHawkAccessTokenValidator.java",
+            "content_around": "            byte[] serverMacData = HmacUtils.computeHmac(macKey, hmacAlgo.getJavaName(), normalizedString); \n                                                         \n            String clientMacString = schemeParams.get(OAuthConstants.HAWK_TOKEN_SIGNATURE);\n            byte[] clientMacData = Base64Utility.decode(clientMacString);\n            boolean validMac = Arrays.equals(serverMacData, clientMacData);\n            if (!validMac) {\n                AuthorizationUtils.throwAuthorizationFailure(Collections\n                    .singleton(OAuthConstants.HAWK_AUTHORIZATION_SCHEME));\n            }\n        } catch (Base64Exception e) {\n            throw new OAuthServiceException(OAuthConstants.SERVER_ERROR, e);\n",
+            "previous_commits": [
+                {
+                    "commit": "e9b59cae176724350aee787de86c531242b51023",
+                    "line number": 64,
+                    "line content": "boolean validMac = Arrays.equals(serverMacData, clientMacData);",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ],
+    "295a4e2f9eb3e7e0513980202949ccc424dee2d4": [
+        {
+            "line_num": 177,
+            "line_str": "ai.setAsserted(true);",
+            "file_path": "rt/ws/security/src/main/java/org/apache/cxf/ws/security/wss4j/UsernameTokenInterceptor.java",
+            "content_around": "            tok = (UsernameToken)ai.getAssertion();\n            if (princ != null && tok.isHashPassword() != princ.isPasswordDigest()) {\n                ai.setNotAsserted(\"Password hashing policy not enforced\");\n            } else {\n                ai.setAsserted(true);                \n            }\n        }\n        ais = aim.getAssertionInfo(SP12Constants.SUPPORTING_TOKENS);\n        for (AssertionInfo ai : ais) {\n            ai.setAsserted(true);\n        }\n",
+            "previous_commits": [
+                {
+                    "commit": "44def033ba61a666c0b86bd833a0014a18a4f5dc",
+                    "line number": 177,
+                    "line content": "ai.setAsserted(true);",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ],
+    "845eccb6484b43ba02875c71e824db23ae4f20c0": [
+        {
+            "line_num": 131,
+            "line_str": "Element assertionElement = samlResponse.getAssertions().get(0).getDOM();",
+            "file_path": "rt/rs/security/sso/saml/src/main/java/org/apache/cxf/rs/security/saml/sso/SAMLSSOResponseValidator.java",
+            "content_around": "        SSOValidatorResponse validatorResponse = new SSOValidatorResponse();\n        validatorResponse.setResponseId(samlResponse.getID());\n        validatorResponse.setSessionNotOnOrAfter(sessionNotOnOrAfter);\n        // the assumption for now is that SAMLResponse will contain only a single assertion\n        Element assertionElement = samlResponse.getAssertions().get(0).getDOM();\n        validatorResponse.setAssertion(DOM2Writer.nodeToString(assertionElement));\n        return validatorResponse;\n    }\n    \n    /**\n     * Validate the Issuer (if it exists)\n",
+            "previous_commits": [
+                {
+                    "commit": "4575921f8867ee158e434548d10bfa05942b4d7e",
+                    "line number": 131,
+                    "line content": "Element assertionElement = samlResponse.getAssertions().get(0).getDOM();",
+                    "hunk(diff message)": "@@ -126,8 +128,8 @@ public class SAMLSSOResponseValidator {\n         validatorResponse.setResponseId(samlResponse.getID());\n         validatorResponse.setSessionNotOnOrAfter(sessionNotOnOrAfter);\n         // the assumption for now is that SAMLResponse will contain only a single assertion\n-        validatorResponse.setAssertion(\n-            new AssertionWrapper(samlResponse.getAssertions().get(0)).assertionToString());\n+        Element assertionElement = samlResponse.getAssertions().get(0).getDOM();\n+        validatorResponse.setAssertion(DOM2Writer.nodeToString(assertionElement));\n         return validatorResponse;\n     }\n     \n"
+                },
+                {
+                    "commit": "4224f1ff1c70027c9df680985d188b1857a0bad5",
+                    "line number": 133,
+                    "line content": "new AssertionWrapper(samlResponse.getAssertions().get(0)).assertionToString());",
+                    "hunk(diff message)": "@@ -127,7 +128,9 @@ public class SAMLSSOResponseValidator {\n         SSOValidatorResponse validatorResponse = new SSOValidatorResponse();\n         validatorResponse.setResponseId(samlResponse.getID());\n         validatorResponse.setSessionNotOnOrAfter(sessionNotOnOrAfter);\n-        \n+        // the assumption for now is that SAMLResponse will contain only a single assertion\n+        validatorResponse.setAssertion(\n+            new AssertionWrapper(samlResponse.getAssertions().get(0)).assertionToString());\n         return validatorResponse;\n     }\n     \n"
+                }
+            ]
+        }
+    ]
+}

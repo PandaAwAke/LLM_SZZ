@@ -1,0 +1,171 @@
+{
+    "566a8ddb885f0bef9bc848e60455c0aabbf0c1d3": [
+        {
+            "line_num": 184,
+            "line_str": "if (id.matches(\"[a-z0-9_. -]+\")) {",
+            "file_path": "core/src/main/java/jenkins/model/IdStrategy.java",
+            "content_around": "         * {@inheritDoc}\n         */\n        @Override\n        public String filenameOf(String id) {\n            if (id.matches(\"[a-z0-9_. -]+\")) {\n                return id;\n            } else {\n                StringBuilder buf = new StringBuilder(id.length() + 16);\n                for (char c : id.toCharArray()) {\n                    if ('a' <= c && c <= 'z') {\n                        buf.append(c);\n",
+            "previous_commits": [
+                {
+                    "commit": "1c6734098ca068b66bbd1abab30353d7a4f1c5e4",
+                    "line number": 184,
+                    "line content": "if (id.matches(\"[a-z0-9_. -]+\")) {",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ],
+    "fbf96734470caba9364f04e0b77b0bae7293a1ec": [
+        {
+            "line_num": 146,
+            "line_str": "throw new BadCredentialsException(\"Failed to login as \"+username);",
+            "file_path": "core/src/main/java/hudson/security/HudsonPrivateSecurityRealm.java",
+            "content_around": "    @Override\n    protected Details authenticate(String username, String password) throws AuthenticationException {\n        Details u = loadUserByUsername(username);\n        if (!PASSWORD_ENCODER.isPasswordValid(u.getPassword(),password,null))\n            throw new BadCredentialsException(\"Failed to login as \"+username);\n        return u;\n    }\n\n    /**\n     * Creates an user account. Used for self-registration.\n     */\n",
+            "previous_commits": [
+                {
+                    "commit": "1952937655c28bf5e523b8ea806dba504e76d65f",
+                    "line number": 146,
+                    "line content": "throw new BadCredentialsException(\"Failed to login as \"+username);",
+                    "hunk(diff message)": "@@ -132,16 +129,22 @@ public class HudsonPrivateSecurityRealm extends SecurityRealm implements ModelOb\n     }\n \n     @Override\n-    public SecurityComponents createSecurityComponents() {\n-        Binding binding = new Binding();\n-        binding.setVariable(\"passwordEncoder\", PASSWORD_ENCODER);\n-\n-        BeanBuilder builder = new BeanBuilder();\n-        builder.parse(Hudson.getInstance().servletContext.getResourceAsStream(\"/WEB-INF/security/HudsonPrivateSecurityRealm.groovy\"),binding);\n-        WebApplicationContext context = builder.createApplicationContext();\n-        return new SecurityComponents(\n-                findBean(AuthenticationManager.class, context),\n-                findBean(UserDetailsService.class, context));\n+    public Details loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {\n+        User u = User.get(username,false);\n+        Details p = u!=null ? u.getProperty(Details.class) : null;\n+        if(p==null)\n+            throw new UsernameNotFoundException(\"Password is not set: \"+username);\n+        if(p.getUser()==null)\n+            throw new AssertionError();\n+        return p;\n+    }\n+\n+    @Override\n+    protected Details authenticate(String username, String password) throws AuthenticationException {\n+        Details u = loadUserByUsername(username);\n+        if (!PASSWORD_ENCODER.isPasswordValid(u.getPassword(),password,null))\n+            throw new BadCredentialsException(\"Failed to login as \"+username);\n+        return u;\n     }\n \n     /**"
+                },
+                {
+                    "commit": "9f107f64e726429b83d9dd19ce144e38d735cf57",
+                    "line number": 214,
+                    "line content": "throw new UsernameNotFoundException(\"Password is not set: \"+username);",
+                    "hunk(diff message)": "@@ -211,7 +211,7 @@ public class HudsonPrivateSecurityRealm extends SecurityRealm {\n         public UserDetails loadUserByUsername(String username) {\n             Details p = User.get(username).getProperty(Details.class);\n             if(p==null)\n-                throw new DisabledException(\"Password is not set: \"+username);\n+                throw new UsernameNotFoundException(\"Password is not set: \"+username);\n             return p;\n         }\n     }\n"
+                },
+                {
+                    "commit": "56282457842209f4c56a0443b78d599af2b1a837",
+                    "line number": 180,
+                    "line content": "throw new DisabledException(\"Password is not set: \"+username);",
+                    "hunk(diff message)": "@@ -86,20 +147,38 @@ public class HudsonPrivateSecurityRealm extends SecurityRealm {\n         }\n \n         public boolean isEnabled() {\n-            // TODO: if password is not set, don't allow login\n             return true;\n         }\n+\n+        public UserPropertyDescriptor getDescriptor() {\n+            return DETAILS_DESCRIPTOR;\n+        }\n     }\n \n+    public static final UserPropertyDescriptor DETAILS_DESCRIPTOR = new UserPropertyDescriptor(Details.class) {\n+        public String getDisplayName() {\n+            // don't display the configuration section for this.\n+            return null;\n+        }\n+\n+        public Details newInstance(StaplerRequest req, JSONObject formData) throws FormException {\n+            return new Details(formData.getString(\"password\"));\n+        }\n+\n+        public UserProperty newInstance(User user) {\n+            return null;\n+        }\n+    };\n+\n     /**\n      * {@link UserDetailsService} that loads user information from {@link User} object. \n      */\n     public static final class HudsonUserDetailsService implements UserDetailsService {\n-        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {\n-            User u = User.get(username, false);\n-            if(u==null)\n-                throw new UsernameNotFoundException(\"No such user: \"+username);\n-            return new UserDetailsImpl(u);\n+        public UserDetails loadUserByUsername(String username) {\n+            Details p = User.get(username).getProperty(Details.class);\n+            if(p==null)\n+                throw new DisabledException(\"Password is not set: \"+username);\n+            return p;\n         }\n     }\n \n"
+                },
+                {
+                    "commit": "011730f30132ee32dd575bd1ae47fe1cf3c55a31",
+                    "line number": 39,
+                    "line content": "throw new UsernameNotFoundException(\"No such user: \"+username);",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ],
+    "c3351d2e7c3edfee82b9470e9aa1168982296072": [
+        {
+            "line_num": 177,
+            "line_str": "return new File(build.getRootDir(), \"fileParameters/\" + location);",
+            "file_path": "core/src/main/java/hudson/model/FileParameterValue.java",
+            "content_around": "     * @param build the build\n     * @return the location to store the file parameter\n     */\n    private File getLocationUnderBuild(AbstractBuild build) {\n        return new File(build.getRootDir(), \"fileParameters/\" + location);\n    }\n\n    /**\n     * Default implementation from {@link File}.\n     */\n    public static final class FileItemImpl implements FileItem {\n",
+            "previous_commits": [
+                {
+                    "commit": "e96c8f8f84b05e4c760d5eaede5725dd6068659c",
+                    "line number": 177,
+                    "line content": "return new File(build.getRootDir(), \"fileParameters/\" + location);",
+                    "hunk(diff message)": "@@ -121,7 +146,35 @@ public class FileParameterValue extends ParameterValue {\n \t\n     @Override\n     public String getShortDescription() {\n-    \treturn \"(FileParameterValue) \" + getName() + \"='\" + file.getName() + \"'\";\n+    \treturn \"(FileParameterValue) \" + getName() + \"='\" + originalFileName + \"'\";\n+    }\n+\n+    /**\n+     * Serve this file parameter in response to a {@link StaplerRequest}.\n+     *\n+     * @param request\n+     * @param response\n+     * @throws ServletException\n+     * @throws IOException\n+     */\n+    public void doDynamic(StaplerRequest request, StaplerResponse response) throws ServletException, IOException {\n+        if ((\"/\" + originalFileName).equals(request.getRestOfPath())) {\n+            AbstractBuild build = (AbstractBuild)request.findAncestor(AbstractBuild.class).getObject();\n+            File fileParameter = getLocationUnderBuild(build);\n+            if (fileParameter.isFile()) {\n+                response.serveFile(request, fileParameter.toURI().toURL());\n+            }\n+        }\n+    }\n+\n+    /**\n+     * Get the location under the build directory to store the file parameter.\n+     *\n+     * @param build the build\n+     * @return the location to store the file parameter\n+     */\n+    private File getLocationUnderBuild(AbstractBuild build) {\n+        return new File(build.getRootDir(), \"fileParameters/\" + location);\n     }\n \n     /**\n"
+                }
+            ]
+        }
+    ],
+    "5d57c855f3147bfc5e7fda9252317b428a700014": [
+        {
+            "line_num": 127,
+            "line_str": "return Messages.Cause_RemoteCause_ShortDescriptionWithNote(addr, note);",
+            "file_path": "core/src/main/java/hudson/model/Cause.java",
+            "content_around": "\n        @Override\n        public String getShortDescription() {\n            if(note != null) {\n                return Messages.Cause_RemoteCause_ShortDescriptionWithNote(addr, note);\n            } else {\n                return Messages.Cause_RemoteCause_ShortDescription(addr);\n            }\n        }\n    }\n}\n",
+            "previous_commits": [
+                {
+                    "commit": "910bcfa5b8743a2226cc7364130b6de10f120334",
+                    "line number": 127,
+                    "line content": "return Messages.Cause_RemoteCause_ShortDescriptionWithNote(addr, note);",
+                    "hunk(diff message)": "@@ -114,14 +114,20 @@ public abstract class Cause {\n \n     public static class RemoteCause extends Cause {\n         private String addr;\n+        private String note;\n \n-        public RemoteCause(String addr) {\n-            this.addr = addr;\n+        public RemoteCause(String host, String note) {\n+            this.addr = host;\n+            this.note = note;\n         }\n \n         @Override\n         public String getShortDescription() {\n-            return Messages.Cause_RemoteCause_ShortDescription(addr);\n+            if(note != null) {\n+                return Messages.Cause_RemoteCause_ShortDescriptionWithNote(addr, note);\n+            } else {\n+                return Messages.Cause_RemoteCause_ShortDescription(addr);\n+            }\n         }\n     }\n }\n"
+                }
+            ]
+        }
+    ],
+    "5bd9b55a2a3249939fd78c501b8959a804c1164b": [],
+    "b6b2a367a7976be80a799c6a49fa6c58d778b50e": [
+        {
+            "line_num": 1920,
+            "line_str": "for (AbstractProject downstream : t.getChildProjects(this)) {",
+            "file_path": "core/src/main/java/hudson/model/AbstractProject.java",
+            "content_around": "            t.start(this,true);\n\n        for (Publisher _t : Descriptor.newInstancesFromHeteroList(req, json, \"publisher\", Jenkins.getInstance().getExtensionList(BuildTrigger.DescriptorImpl.class))) {\n            BuildTrigger t = (BuildTrigger) _t;\n            for (AbstractProject downstream : t.getChildProjects(this)) {\n                downstream.checkPermission(BUILD);\n            }\n        }\n    }\n\n    /**\n",
+            "previous_commits": [
+                {
+                    "commit": "36342d71e29e0620f803a7470ce96c61761648d8",
+                    "line number": 1920,
+                    "line content": "for (AbstractProject downstream : t.getChildProjects(this)) {",
+                    "hunk(diff message)": "@@ -1914,6 +1914,13 @@ public abstract class AbstractProject<P extends AbstractProject<P,R>,R extends A\n         triggers = buildDescribable(req, Trigger.for_(this));\n         for (Trigger t : triggers)\n             t.start(this,true);\n+\n+        for (Publisher _t : Descriptor.newInstancesFromHeteroList(req, json, \"publisher\", Jenkins.getInstance().getExtensionList(BuildTrigger.DescriptorImpl.class))) {\n+            BuildTrigger t = (BuildTrigger) _t;\n+            for (AbstractProject downstream : t.getChildProjects(this)) {\n+                downstream.checkPermission(BUILD);\n+            }\n+        }\n     }\n \n     /**\n"
+                }
+            ]
+        }
+    ],
+    "0530a6645aac10fec005614211660e98db44b5eb": [
+        {
+            "line_num": 196,
+            "line_str": "owner.checkPermission(Jenkins.ADMINISTER);",
+            "file_path": "core/src/main/java/hudson/util/RemotingDiagnostics.java",
+            "content_around": "        }\n\n        @WebMethod(name=\"heapdump.hprof\")\n        public void doHeapDump(StaplerRequest req, StaplerResponse rsp) throws IOException, InterruptedException {\n            owner.checkPermission(Jenkins.ADMINISTER);\n            rsp.setContentType(\"application/octet-stream\");\n\n            FilePath dump = obtain();\n            try {\n                dump.copyTo(rsp.getCompressedOutputStream(req));\n            } finally {\n",
+            "previous_commits": [
+                {
+                    "commit": "70c10658148c3eab3b4c4122705e1ed3a12e193d",
+                    "line number": 196,
+                    "line content": "owner.checkPermission(Jenkins.ADMINISTER);",
+                    "hunk(diff message)": "@@ -193,7 +193,7 @@ public final class RemotingDiagnostics {\n \n         @WebMethod(name=\"heapdump.hprof\")\n         public void doHeapDump(StaplerRequest req, StaplerResponse rsp) throws IOException, InterruptedException {\n-            owner.checkPermission(Hudson.ADMINISTER);\n+            owner.checkPermission(Jenkins.ADMINISTER);\n             rsp.setContentType(\"application/octet-stream\");\n \n             FilePath dump = obtain();\n"
+                },
+                {
+                    "commit": "6784369b13c598fcd85c06f28d1a7d76cc20dcc8",
+                    "line number": 188,
+                    "line content": "owner.checkPermission(Hudson.ADMINISTER);",
+                    "hunk(diff message)": "@@ -129,4 +139,65 @@ public final class RemotingDiagnostics {\n             return out.toString();\n         }\n     }\n+\n+    /**\n+     * Obtains the heap dump in an HPROF file.\n+     */\n+    public static FilePath getHeapDump(VirtualChannel channel) throws IOException, InterruptedException {\n+        return channel.call(new Callable<FilePath, IOException>() {\n+            public FilePath call() throws IOException {\n+                final File hprof = File.createTempFile(\"hudson-heapdump\", \"hprof\");\n+                hprof.delete();\n+                try {\n+                    MBeanServer server = ManagementFactory.getPlatformMBeanServer();\n+                    server.invoke(new ObjectName(\"com.sun.management:type=HotSpotDiagnostic\"), \"dumpHeap\",\n+                            new Object[]{hprof.getAbsolutePath(), true}, new String[]{String.class.getName(), boolean.class.getName()});\n+\n+                    return new FilePath(hprof);\n+                } catch (JMException e) {\n+                    throw new IOException2(e);\n+                }\n+            }\n+\n+            private static final long serialVersionUID = 1L;\n+        });\n+    }\n+\n+    /**\n+     * Heap dump, exposable to URL via Stapler.\n+     *\n+     */\n+    public static class HeapDump {\n+        private final AccessControlled owner;\n+        private final VirtualChannel channel;\n+\n+        public HeapDump(AccessControlled owner, VirtualChannel channel) {\n+            this.owner = owner;\n+            this.channel = channel;\n+        }\n+\n+        /**\n+         * Obtains the heap dump.\n+         */\n+        public void doIndex(StaplerResponse rsp) throws IOException {\n+            rsp.sendRedirect(\"heapdump.hprof\");\n+        }\n+\n+        @WebMethod(name=\"heapdump.hprof\")\n+        public void doHeapDump(StaplerRequest req, StaplerResponse rsp) throws IOException, InterruptedException {\n+            owner.checkPermission(Hudson.ADMINISTER);\n+            rsp.setContentType(\"application/octet-stream\");\n+\n+            FilePath dump = obtain();\n+            try {\n+                dump.copyTo(rsp.getCompressedOutputStream(req));\n+            } finally {\n+                dump.delete();\n+            }\n+        }\n+\n+        public FilePath obtain() throws IOException, InterruptedException {\n+            return RemotingDiagnostics.getHeapDump(channel);\n+        }\n+    }\n }\n"
+                }
+            ]
+        }
+    ],
+    "7b1f8e96a8d97dd09e5e093fcdb010b3295acc77": [
+        {
+            "line_num": 145,
+            "line_str": "return Collections.unmodifiableList(properties);",
+            "file_path": "core/src/main/java/hudson/model/User.java",
+            "content_around": "    }\n\n    @Exported(name=\"properties\")\n    public List<UserProperty> getAllProperties() {\n        return Collections.unmodifiableList(properties);\n    }\n    \n    /**\n     * Gets the specific property, or null.\n     */\n    public <T extends UserProperty> T getProperty(Class<T> clazz) {\n",
+            "previous_commits": [
+                {
+                    "commit": "f09983ec8fc95bd85e7cacba33253ac88ff227b3",
+                    "line number": 145,
+                    "line content": "return Collections.unmodifiableList(properties);",
+                    "hunk(diff message)": "@@ -139,6 +139,11 @@ public class User extends AbstractModelObject {\n         properties = ps;\n         save();\n     }\n+\n+    @Exported(name=\"properties\")\n+    public List<UserProperty> getAllProperties() {\n+        return Collections.unmodifiableList(properties);\n+    }\n     \n     /**\n      * Gets the specific property, or null.\n"
+                }
+            ]
+        }
+    ],
+    "e5046911c57e60a1d6d8aca9b21bd9093b0f3763": [
+        {
+            "line_num": 137,
+            "line_str": "c.set(field,i-offset);",
+            "file_path": "core/src/main/java/hudson/scheduler/CronTab.java",
+            "content_around": "            c.add(field,i);\n        }\n\n        private void setTo(Calendar c, int i) {\n            c.set(field,i-offset);\n        }\n\n        private void clear(Calendar c) {\n            setTo(c,zero);\n        }\n\n",
+            "previous_commits": [
+                {
+                    "commit": "350bf691654b9d2700322964179b155b02c83c14",
+                    "line number": 137,
+                    "line content": "c.set(field,i-offset);",
+                    "hunk(diff message)": "@@ -89,6 +92,170 @@ public final class CronTab {\n         return true;\n     }\n \n+    private static abstract class CalendarField {\n+        /**\n+         * {@link Calendar} field ID.\n+         */\n+        private final int field;\n+        /**\n+         * Lower field is a calendar field whose value needs to be reset when we change the value in this field.\n+         * For example, if we modify the value in HOUR, MINUTES must be reset.\n+         */\n+        private final CalendarField lowerField;\n+        private final int offset;\n+        /**\n+         * When we reset this field, we set the field to this value.\n+         * For example, resetting {@link Calendar#DAY_OF_MONTH} means setting it to 1.\n+         */\n+        private final int zero;\n+        /**\n+         * If this calendar field has other aliases such that a change in this field\n+         * modifies other field values, then true.\n+         */\n+        private final boolean redoAdjustmentIfModified;\n+\n+        private CalendarField(int field, int zero, int offset, boolean redoAdjustmentIfModified, CalendarField lowerField) {\n+            this.field = field;\n+            this.zero = zero;\n+            this.redoAdjustmentIfModified= redoAdjustmentIfModified;\n+            this.lowerField = lowerField;\n+            this.offset = offset;\n+        }\n+\n+        /**\n+         * Gets the current value of this field in the given calendar.\n+         */\n+        private int valueOf(Calendar c) {\n+            return c.get(field)+offset;\n+        }\n+\n+        private void addTo(Calendar c, int i) {\n+            c.add(field,i);\n+        }\n+\n+        private void setTo(Calendar c, int i) {\n+            c.set(field,i-offset);\n+        }\n+\n+        private void clear(Calendar c) {\n+            setTo(c,zero);\n+        }\n+\n+        /**\n+         * Given the value 'n' (which represents the current value), finds the smallest x such that:\n+         *  1) x matches the specified {@link CronTab} (as far as this field is concerned.)\n+         *  2) x>=n   (inclusive)\n+         *\n+         * If there's no such bit, return -1. Note that if 'n' already matches the crontab, the same n will be returned.\n+         */\n+        private int ceil(CronTab c, int n) {\n+            long bits = bits(c);\n+            while ((bits|(1L<<n))!=bits) {\n+                if (n>32)   return -1;\n+                n++;\n+            }\n+            return n;\n+        }\n+\n+        /**\n+         * Given a bit mask, finds the first bit that's on, and return its index.\n+         */\n+        private int first(CronTab c) {\n+            return ceil(c,0);\n+        }\n+\n+\n+        /**\n+         * Extracts the bit masks from the given {@link CronTab} that matches this field.\n+         */\n+        abstract long bits(CronTab c);\n+\n+        /**\n+         * Increment the next field.\n+         */\n+        abstract void rollUp(Calendar cal);\n+\n+        private static final CalendarField MINUTE       = new CalendarField(Calendar.MINUTE,        0, 0, false, null) {\n+            long bits(CronTab c) { return c.bits[0]; }\n+            void rollUp(Calendar cal) { cal.add(Calendar.HOUR_OF_DAY,1); }\n+        };\n+        private static final CalendarField HOUR         = new CalendarField(Calendar.HOUR_OF_DAY,   0, 0, false, MINUTE) {\n+            long bits(CronTab c) { return c.bits[1]; }\n+            void rollUp(Calendar cal) { cal.add(Calendar.DAY_OF_MONTH,1); }\n+        };\n+        private static final CalendarField DAY_OF_MONTH = new CalendarField(Calendar.DAY_OF_MONTH,  1, 0, true,  HOUR) {\n+            long bits(CronTab c) { return c.bits[2]; }\n+            void rollUp(Calendar cal) { cal.add(Calendar.MONTH,1); }\n+        };\n+        private static final CalendarField MONTH        = new CalendarField(Calendar.MONTH,         1, 1, false, DAY_OF_MONTH) {\n+            long bits(CronTab c) { return c.bits[3]; }\n+            void rollUp(Calendar cal) { cal.add(Calendar.YEAR,1); }\n+        };\n+        private static final CalendarField DAY_OF_WEEK  = new CalendarField(Calendar.DAY_OF_WEEK,   1,-1, true,  HOUR) {\n+            long bits(CronTab c) { return c.dayOfWeek; }\n+            void rollUp(Calendar cal) {\n+                cal.add(Calendar.WEEK_OF_YEAR,1);\n+            }\n+        };\n+\n+        private static final CalendarField[] ADJUST_ORDER = {\n+            MONTH, DAY_OF_MONTH, DAY_OF_WEEK, HOUR, MINUTE\n+        };\n+    }\n+\n+\n+    /**\n+     * Computes the nearest future timestamp that matches this cron tab.\n+     * <p>\n+     * More precisely, given the time 't', computes another smallest time x such that:\n+     *\n+     * <ul>\n+     * <li>x >= t (inclusive)\n+     * <li>x matches this crontab\n+     * </ul>\n+     *\n+     * <p>\n+     * Note that if t already matches this cron, it's returned as is.\n+     */\n+    public Calendar ceil(long t) {\n+        Calendar cal = new GregorianCalendar();\n+        cal.setTimeInMillis(t);\n+        return ceil(cal);\n+    }\n+\n+    /**\n+     * See {@link #ceil(long)}.\n+     *\n+     * This method modifies the given calendar and returns the same object.\n+     */\n+    public Calendar ceil(Calendar cal) {\n+        OUTER:\n+        while (true) {\n+            for (CalendarField f : CalendarField.ADJUST_ORDER) {\n+                int cur = f.valueOf(cal);\n+                int next = f.ceil(this,cur);\n+                if (cur==next)  continue;   // this field is already in a good shape. move on to next\n+\n+                // we are modifying this field, so clear all the lower level fields\n+                for (CalendarField l=f.lowerField; l!=null; l=l.lowerField)\n+                    l.clear(cal);\n+\n+                if (next<0) {\n+                    // we need to roll over to the next field.\n+                    f.rollUp(cal);\n+                    f.setTo(cal,f.first(this));\n+                    // since higher order field is affected by this, we need to restart from all over\n+                    continue OUTER;\n+                } else {\n+                    f.setTo(cal,next);\n+                    if (f.redoAdjustmentIfModified)\n+                        continue OUTER; // when we modify DAY_OF_MONTH and DAY_OF_WEEK, do it all over from the top\n+                }\n+            }\n+            return cal; // all fields adjusted\n+        }\n+    }\n+\n     void set(String format) throws ANTLRException {\n         set(format,1);\n     }\n"
+                }
+            ]
+        }
+    ],
+    "da06fd471cea79123821c778228eeb08e1cedcc7": [
+        {
+            "line_num": 123,
+            "line_str": "@Exported",
+            "file_path": "core/src/main/java/hudson/model/Executor.java",
+            "content_around": "     *\n     * @return\n     *      null if the executor is idle.\n     */\n    @Exported\n    public Queue.Executable getCurrentExecutable() {\n        return executable;\n    }\n\n    /**\n     * Same as {@link #getName()}.\n",
+            "previous_commits": [
+                {
+                    "commit": "bf3c016358b3a5ebc8626d1952c55a5988239ece",
+                    "line number": 123,
+                    "line content": "@Exported",
+                    "hunk(diff message)": "@@ -120,6 +120,7 @@ public class Executor extends Thread implements ModelObject {\n      * @return\n      *      null if the executor is idle.\n      */\n+    @Exported\n     public Queue.Executable getCurrentExecutable() {\n         return executable;\n     }\n"
+                }
+            ]
+        }
+    ]
+}

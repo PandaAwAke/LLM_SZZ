@@ -1,0 +1,233 @@
+{
+    "CVE-2008-5518": {
+        "VFC": [
+            "f8a612df7b06729bfd6c826e1a110d4bb40dc1f5",
+            "67dda0760bb0925ead201ddd5d809ff53686d63f",
+            "aa0c2c26dde8930cad924796af7c17a13d236b16"
+        ],
+        "VIC": [
+            "18f0f18696b291961dd263e3adfc2e85cd7e144f",
+            "4d1ef8887ffe20191b88cfaca780e9c5ad09ff8d"
+        ],
+        "repo": "https://github.com/apache/geronimo"
+    },
+    "CVE-2009-0038": {
+        "VFC": [
+            "67dda0760bb0925ead201ddd5d809ff53686d63f",
+            "aa0c2c26dde8930cad924796af7c17a13d236b16",
+            "f8a612df7b06729bfd6c826e1a110d4bb40dc1f5"
+        ],
+        "VIC": [
+            "780d31605346d5d6d437a1196e6feb0b1304a1e6"
+        ],
+        "repo": "https://github.com/apache/geronimo"
+    },
+    "CVE-2012-0022": {
+        "VFC": [
+            "0314fe7743cb72e469cb395ccaaf2793a2ea0355"
+        ],
+        "VIC": [
+            "2ee172f418591edd61cfd3dc9676753b281d1fe2"
+        ],
+        "repo": "https://github.com/apache/tomcat55"
+    },
+    "CVE-2012-5633": {
+        "VFC": [
+            "94a98b3fe9c79e2cf3941acbbad216ba54999bc0"
+        ],
+        "VIC": [
+            "88a9451b92180609b7bb93d0314bc8384f0c24a4"
+        ],
+        "repo": "https://github.com/apache/cxf"
+    },
+    "CVE-2013-0158": {
+        "VFC": [
+            "a9aff088f327278a8873aef47fa8f80d3c5932fd"
+        ],
+        "VIC": [
+            "5f51089b323499355956a2d8f23ed866fae28fff",
+            "c6acb5b8d55a1402ecf95c21aa9c359c4b80db8c",
+            "8d771bc2e335fea5369ba06066c87866494fa5e3"
+        ],
+        "repo": "https://github.com/jenkinsci/jenkins"
+    },
+    "CVE-2014-0168": {
+        "VFC": [
+            "2d9b168cfbbf5a6d16fa6e8a5b34503e3dc42364"
+        ],
+        "VIC": [
+            "932c7a51d4a251a6c1f03868415ba3c89f5ee205",
+            "4d7a089e97576836945983ecfbbc92ae818b50ac"
+        ],
+        "repo": "https://github.com/rhuss/jolokia"
+    },
+    "CVE-2015-4165": {
+        "VFC": [
+            "f5cfb2a1869d1a52930cbd3138278a6e2c1b22e6"
+        ],
+        "VIC": [
+            "510397aecdb95047995930f48dc439614aeafce0"
+        ],
+        "repo": "https://github.com/elastic/elasticsearch"
+    },
+    "CVE-2015-5172": {
+        "VFC": [
+            "cd31cc397fe17389d95b83d6a9caa46eebc54faf"
+        ],
+        "VIC": [
+            "327fbdc2c2f8595b1fbc09f5925c907b42f2d45a",
+            "84efa230dcd21bd0aea283966481dcf75299affb"
+        ],
+        "repo": "https://github.com/cloudfoundry/uaa"
+    },
+    "CVE-2015-5211": {
+        "VFC": [
+            "2bd1daa75ee0b8ec33608ca6ab065ef3e1815543",
+            "a95c3d820dbc4c3ae752f1b3ee22ee860b162402"
+        ],
+        "VIC": [
+            "1338d46a6ed6595dc73f3cac675d7e6c04f17da1",
+            "acc75aa4b898a34dce42748df5b54624f8b3e9f2",
+            "5dc27ee134d28c7b25d0f6d3e9059f80c95d4402",
+            "88447e503b1c0eeccceb2de28876af9bcd4db90f"
+        ],
+        "repo": "https://github.com/spring-projects/spring-framework"
+    },
+    "CVE-2015-5344": {
+        "VFC": [
+            "8386d8f7260143802553bc6dbae2880d6c0bafda"
+        ],
+        "VIC": [
+            "59652f53b6dc4980010daa34c3841717cddfc676"
+        ],
+        "repo": "https://github.com/apache/camel"
+    },
+    "CVE-2016-1000344": {
+        "VFC": [
+            "9385b0ebd277724b167fe1d1456e3c112112be1f"
+        ],
+        "VIC": [
+            "158b54fbacb8926df0e74086e95900924c862b6e"
+        ],
+        "repo": "https://github.com/bcgit/bc-java"
+    },
+    "CVE-2016-1000352": {
+        "VFC": [
+            "9385b0ebd277724b167fe1d1456e3c112112be1f"
+        ],
+        "VIC": [
+            "158b54fbacb8926df0e74086e95900924c862b6e"
+        ],
+        "repo": "https://github.com/bcgit/bc-java"
+    },
+    "CVE-2016-4468": {
+        "VFC": [
+            "215bd349a63edfef15a1aa07a3969c8991e34570",
+            "6bf1c0ae1abc9aaba957708e0b2dfb6a70aab826",
+            "b384a650a122e42d75e8cbb5624d0274a65cd848"
+        ],
+        "VIC": [
+            "f2ffafae01ba5112a80d16d6aa650c55c1a907c1"
+        ],
+        "repo": "https://github.com/cloudfoundry/uaa"
+    },
+    "CVE-2016-6194": {
+        "VFC": [
+            "95ae7401c0f007d5c8e6618ab009c171ce633916"
+        ],
+        "VIC": [
+            "f36f7ce4aff017094bf8ac51c74e85e5112982f2",
+            "dd1948621ceba11373ab9eab6c144e5926cb6420"
+        ],
+        "repo": "https://github.com/rabbitmq/rabbitmq-jms-client"
+    },
+    "CVE-2017-12159": {
+        "VFC": [
+            "9b75b603e3a5f5ba6deff13cbb45b070bf2d2239"
+        ],
+        "VIC": [
+            "6e55604dc3d3c4d04c46993cd966e76fb0d235ad"
+        ],
+        "repo": "https://github.com/keycloak/keycloak"
+    },
+    "CVE-2017-2638": {
+        "VFC": [
+            "f2d54c4ecb75c7264d4160ca7c461135712201a9"
+        ],
+        "VIC": [
+            "a4d8b50522661759b9521f87d1492664178edf7c",
+            "a479fbce4f5fa70e30e95ee83cc7a4860f12b6e1"
+        ],
+        "repo": "https://github.com/infinispan/infinispan"
+    },
+    "CVE-2018-1000104": {
+        "VFC": [
+            "34b7c2b07014b8e1e708361170146600db172491"
+        ],
+        "VIC": [
+            "e0321da00f14181e1c42e4898bdc068edead408d"
+        ],
+        "repo": "https://github.com/jenkinsci/coverity-plugin"
+    },
+    "CVE-2018-1000613": {
+        "VFC": [
+            "4092ede58da51af9a21e4825fbad0d9a3ef5a223"
+        ],
+        "VIC": [
+            "30a3b423634297f05259ac711c88707d5dc86e37"
+        ],
+        "repo": "https://github.com/bcgit/bc-java"
+    },
+    "CVE-2018-1000863": {
+        "VFC": [
+            "4ed66e5838476e575a83c3cd13fffb37eefa2f48"
+        ],
+        "VIC": [
+            "566a8ddb885f0bef9bc848e60455c0aabbf0c1d3",
+            "46c58c52256c16dff076b92a97290f3930e3d49c"
+        ],
+        "repo": "https://github.com/jenkinsci/jenkins"
+    },
+    "CVE-2018-1295": {
+        "VFC": [
+            "340569b8f4e14a4cb61a9407ed2d9aa4a20bdf49"
+        ],
+        "VIC": [
+            "5674cddedddf0f188f95fded9a2bf222e5779aee"
+        ],
+        "repo": "https://github.com/apache/ignite"
+    },
+    "CVE-2018-1305": {
+        "VFC": [
+            "3e54b2a6314eda11617ff7a7b899c251e222b1a1"
+        ],
+        "VIC": [
+            "5c8560f3054982abaa476d87ec031c439d58d66e"
+        ],
+        "repo": "https://github.com/apache/tomcat"
+    },
+    "CVE-2018-14627": {
+        "VFC": [
+            "883115ea2168343e870745f538a80b1ddc360914"
+        ],
+        "VIC": [
+            "bd24a6066e978d13d3c11315bb6d20e1b4538168",
+            "c6e8c65ae242ce61abde280468c55bec1ea9140f"
+        ],
+        "repo": "https://github.com/wildfly/wildfly"
+    },
+    "CVE-2019-3772": {
+        "VFC": [
+            "59c69ed40d3755ef59f80872e0ea711adbb13620"
+        ],
+        "VIC": [
+            "88de8117aa23f204fb20ce6528a5166a47f035ed",
+            "ddc2e1cda98060a5e08d06ffb0950c379ef62ad2",
+            "6cda0b8e7c71c356a300f4bce17eac42308f5c34",
+            "99d26a5b04a5132eb7b348cb30bfbba92b71b8cd",
+            "17832c2913565d8be6e5c341cdbf970e26def046",
+            "2128c1e21e668b71167389d608855d908fd63782"
+        ],
+        "repo": "https://github.com/spring-projects/spring-integration"
+    }
+}

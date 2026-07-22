@@ -1,0 +1,18 @@
+{
+    "3ae4a4d156341a53e54a2fe07192f46b15763d06": [
+        {
+            "line_num": 75,
+            "line_str": "Iterable<Object> result = new org.yaml.snakeyaml.Yaml().loadAll(yaml);",
+            "file_path": "utils/common/src/main/java/brooklyn/util/yaml/Yamls.java",
+            "content_around": "     * \n     * @see #getAt(Object, List)\n     */\n    public static Object getAt(String yaml, List<String> path) {\n        Iterable<Object> result = new org.yaml.snakeyaml.Yaml().loadAll(yaml);\n        Object current = result.iterator().next();\n        return getAtPreParsed(current, path);\n    }\n    \n    /** \n     * For pre-parsed yaml, walks the maps/lists to return the given sub-item.\n",
+            "previous_commits": [
+                {
+                    "commit": "c54b7156a6c1acfd8e1c872c1a5199a39e922927",
+                    "line number": 75,
+                    "line content": "Iterable<Object> result = new org.yaml.snakeyaml.Yaml().loadAll(yaml);",
+                    "hunk(diff message)": "path is not consistent"
+                }
+            ]
+        }
+    ]
+}

@@ -2,9 +2,9 @@ import sys
 import os
 
 # config your working folder and the correponding folder
-WORK_DIR = 'LLM_SZZ/'
+WORK_DIR = '.'
 
-REPOS_DIR = 'LLM_SZZ/repos'  
+REPOS_DIR = r'G:\repository'
 
 DATA_FOLDER = os.path.join(WORK_DIR, 'data/') 
 

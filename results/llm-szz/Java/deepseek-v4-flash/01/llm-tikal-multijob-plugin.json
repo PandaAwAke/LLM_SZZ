@@ -1,0 +1,34 @@
+{
+    "3e6ab85019334a5b2a438264afdebe439cfc82b4": [
+        {
+            "line_num": 78,
+            "line_str": "Jenkins.getInstance().checkPermission(Jenkins.ADMINISTER);",
+            "file_path": "src/main/java/com/tikal/jenkins/plugins/multijob/MultiJobResumeBuild.java",
+            "content_around": "    }\n\n    @Override\n    public Object getTarget() {\n        Jenkins.getInstance().checkPermission(Jenkins.ADMINISTER);\n        return this;\n    }\n}\n",
+            "previous_commits": [
+                {
+                    "commit": "2424cec7a099fe4392f052a754fadc28de9f8d86",
+                    "line number": 78,
+                    "line content": "Jenkins.getInstance().checkPermission(Jenkins.ADMINISTER);",
+                    "hunk(diff message)": "@@ -71,4 +72,10 @@ public class MultiJobResumeBuild implements RunAction2 {\n         actions.addAll(run.getActions(ParametersAction.class));\n         return actions;\n     }\n+\n+    @Override\n+    public Object getTarget() {\n+        Jenkins.getInstance().checkPermission(Jenkins.ADMINISTER);\n+        return this;\n+    }\n }\n"
+                }
+            ]
+        }
+    ],
+    "2424cec7a099fe4392f052a754fadc28de9f8d86": [
+        {
+            "line_num": 22,
+            "line_str": "return \"plugin/jenkins-multijob-plugin/tool32.png\";",
+            "file_path": "src/main/java/com/tikal/jenkins/plugins/multijob/MultiJobResumeBuild.java",
+            "content_around": "\t\tthis.build = build;\n\t}\n\n\tpublic String getIconFileName() {\n\t\treturn \"plugin/jenkins-multijob-plugin/tool32.png\";\n\t}\n\n\tpublic String getDisplayName() {\n\t\treturn \"Resume build\";\n\t}\n\n",
+            "previous_commits": [
+                {
+                    "commit": "fa09157624e6661417e1b97f337c5037e85a6c84",
+                    "line number": 22,
+                    "line content": "return \"plugin/jenkins-multijob-plugin/tool32.png\";",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}

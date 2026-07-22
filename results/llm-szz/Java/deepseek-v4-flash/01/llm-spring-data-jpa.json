@@ -1,0 +1,24 @@
+{
+    "b8e7fecccc7dc8edcabb4704656a7abe6352c08f": [
+        {
+            "line_num": 169,
+            "line_str": "private static String getOrderClause(Set<String> joinAliases, String alias, Order order) {",
+            "file_path": "src/main/java/org/springframework/data/jpa/repository/query/QueryUtils.java",
+            "content_around": "\t * @param alias the alias for the root entity.\n\t * @param order the order object to build the clause for.\n\t * @return\n\t */\n\tprivate static String getOrderClause(Set<String> joinAliases, String alias, Order order) {\n\n\t\tString property = order.getProperty();\n\t\tboolean qualifyReference = true;\n\n\t\tfor (String joinAlias : joinAliases) {\n\t\t\tif (property.startsWith(joinAlias)) {\n",
+            "previous_commits": [
+                {
+                    "commit": "a9cfe73511342c7f7d95a591bbf5ca1e7a8c1e86",
+                    "line number": 169,
+                    "line content": "private static String getOrderClause(Set<String> joinAliases, String alias, Order order) {",
+                    "hunk(diff message)": "@@ -128,24 +134,76 @@ public abstract class QueryUtils {\n \n \t\tAssert.hasText(query);\n \n-\t\tif (null == sort) {\n+\t\tif (null == sort || !sort.iterator().hasNext()) {\n \t\t\treturn query;\n \t\t}\n \n \t\tStringBuilder builder = new StringBuilder(query);\n-\t\tbuilder.append(\" order by\");\n+\n+\t\tif (!query.contains(\"order by\")) {\n+\t\t\tbuilder.append(\" order by \");\n+\t\t} else {\n+\t\t\tbuilder.append(\", \");\n+\t\t}\n+\n+\t\tSet<String> aliases = getOuterJoinAliases(query);\n \n \t\tfor (Order order : sort) {\n-\t\t\tbuilder.append(String.format(\" %s.%s %s,\", alias, order.getProperty(), toJpaDirection(order)));\n+\t\t\tbuilder.append(getOrderClause(aliases, alias, order));\n \t\t}\n \n-\t\tbuilder.deleteCharAt(builder.length() - 1);\n+\t\tbuilder.delete(builder.length() - 2, builder.length());\n \n \t\treturn builder.toString();\n \t}\n \n-\tpublic static String toJpaDirection(Order order) {\n+\t/**\n+\t * Returns the order clause for the given {@link Order}. Will prefix the clause with the given alias if the referenced\n+\t * property refers to a join alias.\n+\t * \n+\t * @param joinAliases the join aliases of the original query.\n+\t * @param alias the alias for the root entity.\n+\t * @param order the order object to build the clause for.\n+\t * @return\n+\t */\n+\tprivate static String getOrderClause(Set<String> joinAliases, String alias, Order order) {\n+\n+\t\tString property = order.getProperty();\n+\t\tboolean qualifyReference = true;\n+\n+\t\tfor (String joinAlias : joinAliases) {\n+\t\t\tif (property.startsWith(joinAlias)) {\n+\t\t\t\tqualifyReference = false;\n+\t\t\t\tbreak;\n+\t\t\t}\n+\t\t}\n+\n+\t\treturn String.format(\"%s%s %s, \", qualifyReference ? alias + \".\" : \"\", property, toJpaDirection(order));\n+\t}\n+\n+\t/**\n+\t * Returns the aliases used for {@code left (outer) join}s.\n+\t * \n+\t * @param query\n+\t * @return\n+\t */\n+\tstatic Set<String> getOuterJoinAliases(String query) {\n+\n+\t\tSet<String> result = new HashSet<String>();\n+\t\tMatcher matcher = LEFT_JOIN_PATTERN.matcher(query);\n+\n+\t\twhile (matcher.find()) {\n+\n+\t\t\tString alias = matcher.group(3);\n+\t\t\tif (StringUtils.hasText(alias)) {\n+\t\t\t\tresult.add(alias);\n+\t\t\t}\n+\t\t}\n+\n+\t\treturn result;\n+\t}\n \n+\tprivate static String toJpaDirection(Order order) {\n \t\treturn order.getDirection().name().toLowerCase(Locale.US);\n \t}\n \n"
+                },
+                {
+                    "commit": "e8c5666070fc195dc6e9431a92013bff2ff926a0",
+                    "line number": 163,
+                    "line content": "public static String toJpaDirection(Order order) {",
+                    "hunk(diff message)": "new add file"
+                }
+            ]
+        }
+    ]
+}
